@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sitemap Generator — ejsnews.github.io</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=Spectral:ital,wght@0,300;0,600;1,300&display=swap');
+
+  :root {
+    --bg: #0b0e14;
+    --surface: #111520;
+    --border: #1e2638;
+    --accent: #4a9eff;
+    --accent2: #a78bfa;
+    --text: #c8d0e0;
+    --muted: #4a5568;
+    --success: #34d399;
+    --warn: #fbbf24;
+    --mono: 'JetBrains Mono', monospace;
+    --serif: 'Spectral', serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    min-height: 100vh;
+    padding: 40px 24px;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 10%, rgba(74,158,255,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 80% 80%, rgba(167,139,250,0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container { max-width: 960px; margin: 0 auto; position: relative; z-index: 1; }
+
+  header { margin-bottom: 36px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+  .label { font-size: 10px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; }
+  h1 { font-family: var(--serif); font-weight: 300; font-size: 26px; color: #e8edf5; margin-bottom: 4px; }
+  .subtitle { color: var(--muted); font-size: 11px; letter-spacing: 0.05em; }
+
+  /* REPOS CONFIG */
+  .repos-section { margin-bottom: 28px; }
+  .section-title { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent2); margin-bottom: 12px; }
+
+  .repo-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+
+  .repo-row {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 8px 12px; border-radius: 4px;
+  }
+
+  .repo-row.disabled { opacity: 0.4; }
+
+  .repo-toggle {
+    width: 14px; height: 14px; border-radius: 3px;
+    border: 1px solid var(--accent); background: transparent;
+    cursor: pointer; flex-shrink: 0; appearance: none;
+    position: relative;
+  }
+  .repo-toggle:checked { background: var(--accent); }
+  .repo-toggle:checked::after {
+    content: '✓'; position: absolute; top: -2px; left: 1px;
+    font-size: 11px; color: #0b0e14; font-weight: bold;
+  }
+
+  .repo-name { color: var(--accent); font-size: 12px; min-width: 200px; }
+  .repo-base { color: var(--text); font-size: 11px; flex: 1; }
+  .repo-note { color: var(--muted); font-size: 10px; font-style: italic; }
+
+  .add-repo { display: flex; gap: 8px; margin-top: 8px; }
+  .add-repo input {
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); font-family: var(--mono); font-size: 11px;
+    padding: 6px 10px; border-radius: 4px; outline: none; flex: 1;
+  }
+  .add-repo input:focus { border-color: var(--accent); }
+  .add-repo input::placeholder { color: var(--muted); }
+
+  button {
+    background: var(--accent); color: #0b0e14; border: none;
+    font-family: var(--mono); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 8px 16px; border-radius: 4px; cursor: pointer;
+    transition: opacity 0.2s; white-space: nowrap;
+  }
+  button:hover { opacity: 0.85; }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .btn-small {
+    background: var(--border); color: var(--text);
+    font-size: 10px; padding: 6px 12px;
+  }
+
+  .btn-generate {
+    width: 100%; padding: 12px; font-size: 12px;
+    letter-spacing: 0.15em; margin-bottom: 20px;
+  }
+
+  .status-bar {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 16px; min-height: 24px;
+    font-size: 11px; color: var(--muted);
+  }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
+  .dot.running { background: var(--accent); animation: pulse 1s infinite; }
+  .dot.done { background: var(--success); }
+  .dot.error { background: #f87171; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .stats { display: flex; gap: 24px; margin-bottom: 20px; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; gap: 2px; }
+  .stat-value { font-size: 20px; font-weight: 600; color: var(--accent); }
+  .stat-label { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+
+  .tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 0; }
+  .tab {
+    padding: 8px 16px; font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); cursor: pointer;
+    border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.2s;
+  }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .output-wrap { position: relative; margin-top: 1px; }
+  textarea {
+    width: 100%; height: 380px;
+    background: var(--surface); border: 1px solid var(--border); border-top: none;
+    color: #a8c0a0; font-family: var(--mono); font-size: 11px;
+    line-height: 1.6; padding: 16px; resize: vertical; outline: none;
+  }
+  .copy-btn {
+    position: absolute; top: 10px; right: 10px;
+    background: var(--border); color: var(--text);
+    font-size: 10px; padding: 5px 12px; border-radius: 3px;
+  }
+  .copy-btn:hover { background: var(--accent); color: #0b0e14; opacity: 1; }
+
+  .tree-wrap {
+    background: var(--surface); border: 1px solid var(--border); border-top: none;
+    max-height: 380px; overflow-y: auto; padding: 12px 16px;
+  }
+  .tree-repo { margin-bottom: 12px; }
+  .tree-repo-title { color: var(--accent2); font-size: 11px; font-weight: 600; margin-bottom: 4px; }
+  .tree-item { display: flex; align-items: center; gap: 6px; padding: 2px 0; font-size: 11px; }
+
+  .robots-section { margin-top: 32px; border-top: 1px solid var(--border); padding-top: 24px; }
+  .robots-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .robots-content {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 16px; font-size: 11px; line-height: 1.8; color: #a8c0a0;
+    white-space: pre; position: relative;
+  }
+  .note { margin-top: 8px; font-size: 10px; color: var(--muted); font-style: italic; }
+
+  .repo-badge {
+    font-size: 9px; padding: 2px 6px; border-radius: 2px;
+    background: var(--border); color: var(--muted); letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="label">ejsnews — Global Sitemap Generator</div>
+    <h1>Sitemap Generator</h1>
+    <div class="subtitle">Multi-dépôts · Évolutif · GitHub API</div>
+  </header>
+
+  <!-- REPOS CONFIG -->
+  <div class="repos-section">
+    <div class="section-title">Dépôts à indexer</div>
+    <div class="repo-list" id="repo-list">
+
+      <div class="repo-row" data-repo="ejsnews.github.io" data-base="https://ejsnews.github.io">
+        <input type="checkbox" class="repo-toggle" checked/>
+        <span class="repo-name">ejsnews.github.io</span>
+        <span class="repo-base">https://ejsnews.github.io/</span>
+        <span class="repo-note">Racine du site</span>
+      </div>
+
+      <div class="repo-row" data-repo="universal-atlas" data-base="https://ejsnews.github.io/universal-atlas">
+        <input type="checkbox" class="repo-toggle" checked/>
+        <span class="repo-name">universal-atlas</span>
+        <span class="repo-base">https://ejsnews.github.io/universal-atlas/</span>
+        <span class="repo-note">Atlas des constantes</span>
+      </div>
+
+    </div>
+
+    <div class="add-repo">
+      <input id="new-repo" placeholder="Nom du nouveau dépôt (ex: primes-theory)"/>
+      <input id="new-note" placeholder="Description courte"/>
+      <button class="btn-small" onclick="addRepo()">+ Ajouter</button>
+    </div>
+  </div>
+
+  <button class="btn-generate" id="btn" onclick="generate()">▶ Générer le sitemap global</button>
+
+  <div class="status-bar">
+    <div class="dot" id="dot"></div>
+    <span id="status">En attente</span>
+  </div>
+
+  <div class="stats" id="stats" style="display:none">
+    <div class="stat"><div class="stat-value" id="count-repos">0</div><div class="stat-label">Dépôts</div></div>
+    <div class="stat"><div class="stat-value" id="count-files">0</div><div class="stat-label">Fichiers</div></div>
+    <div class="stat"><div class="stat-value" id="count-urls">0</div><div class="stat-label">URLs</div></div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('sitemap', this)">sitemap.xml</div>
+    <div class="tab" onclick="switchTab('tree', this)">Arborescence</div>
+  </div>
+
+  <div id="panel-sitemap" class="panel active">
+    <div class="output-wrap">
+      <textarea id="sitemap-out" readonly placeholder="Cliquez sur ▶ Générer..."></textarea>
+      <button class="copy-btn" onclick="copyText('sitemap-out')">Copier</button>
+    </div>
+  </div>
+
+  <div id="panel-tree" class="panel">
+    <div class="tree-wrap" id="tree-out">
+      <span style="color:var(--muted);font-size:11px">Arborescence après génération...</span>
+    </div>
+  </div>
+
+  <div class="robots-section">
+    <div class="robots-header">
+      <div class="section-title" style="color:var(--accent2)">robots.txt — à déposer à la racine de ejsnews.github.io</div>
+      <button class="copy-btn" style="position:static" onclick="copyText('robots-content')">Copier</button>
+    </div>
+    <div class="robots-content" id="robots-content">User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+Sitemap: https://ejsnews.github.io/sitemap.xml</div>
+    <div class="note">→ Déposer à la racine du dépôt <code>ejsnews.github.io</code></div>
+  </div>
+
+</div>
+
+<script>
+const USER = 'ejsnews';
+const GITHUB_API = 'https://api.github.com/repos';
+const EXCLUDED = ['googlefdfed688591bedbd.html', 'placeholder.txt', 'sitemap-generator.html'];
+
+function getRepos() {
+  const rows = document.querySelectorAll('.repo-row');
+  const repos = [];
+  rows.forEach(row => {
+    const cb = row.querySelector('.repo-toggle');
+    if (cb && cb.checked) {
+      repos.push({
+        repo: row.dataset.repo,
+        base: row.dataset.base.replace(/\/$/, ''),
+        note: row.querySelector('.repo-note')?.textContent || ''
+      });
+    }
+  });
+  return repos;
+}
+
+function addRepo() {
+  const name = document.getElementById('new-repo').value.trim();
+  const note = document.getElementById('new-note').value.trim();
+  if (!name) return;
+
+  const base = `https://ejsnews.github.io/${name}`;
+  const list = document.getElementById('repo-list');
+  const row = document.createElement('div');
+  row.className = 'repo-row';
+  row.dataset.repo = name;
+  row.dataset.base = base;
+  row.innerHTML = `
+    <input type="checkbox" class="repo-toggle" checked/>
+    <span class="repo-name">${name}</span>
+    <span class="repo-base">${base}/</span>
+    <span class="repo-note">${note}</span>
+    <button class="btn-small" style="padding:3px 8px;font-size:9px" onclick="this.closest('.repo-row').remove()">✕</button>
+  `;
+  list.appendChild(row);
+  document.getElementById('new-repo').value = '';
+  document.getElementById('new-note').value = '';
+}
+
+function setStatus(msg, state) {
+  document.getElementById('status').textContent = msg;
+  document.getElementById('dot').className = 'dot ' + (state || '');
+}
+
+async function fetchDir(repo, path) {
+  const url = `${GITHUB_API}/${USER}/${repo}/contents/${path}`;
+  const r = await fetch(url, { headers: { 'Accept': 'application/vnd.github.v3+json' } });
+  if (!r.ok) throw new Error(`API error ${r.status} — ${repo}/${path}`);
+  return await r.json();
+}
+
+async function crawl(repo, path, depth, files, nodes) {
+  const items = await fetchDir(repo, path);
+  for (const item of items) {
+    if (EXCLUDED.includes(item.name)) continue;
+    nodes.push({ name: item.name, path: item.path, type: item.type, depth });
+    if (item.type === 'dir') {
+      setStatus(`[${repo}] ${item.path}`, 'running');
+      await crawl(repo, item.path, depth + 1, files, nodes);
+    } else {
+      files.push(item.path);
+    }
+  }
+}
+
+function getIcon(name) {
+  if (name.endsWith('.html')) return '🌐';
+  if (name.endsWith('.txt')) return '📄';
+  if (name.endsWith('.zip')) return '🗜';
+  if (name.endsWith('.py')) return '🐍';
+  if (name.endsWith('.md')) return '📋';
+  if (name.endsWith('.png') || name.endsWith('.jpg')) return '🖼';
+  return '📄';
+}
+
+function getPriority(path, isRoot) {
+  if (isRoot && path === '') return '1.0';
+  if (path.endsWith('.html')) return '0.8';
+  if (path.endsWith('.txt')) return '0.7';
+  if (path.endsWith('.zip')) return '0.6';
+  if (path.endsWith('.md')) return '0.5';
+  return '0.5';
+}
+
+function getFreq(path) {
+  if (path.endsWith('.txt')) return 'weekly';
+  return 'monthly';
+}
+
+async function generate() {
+  const repos = getRepos();
+  if (repos.length === 0) { setStatus('Aucun dépôt sélectionné', 'error'); return; }
+
+  const btn = document.getElementById('btn');
+  btn.disabled = true;
+  setStatus('Démarrage...', 'running');
+  document.getElementById('stats').style.display = 'none';
+  document.getElementById('sitemap-out').value = '';
+  document.getElementById('tree-out').innerHTML = '';
+
+  const today = new Date().toISOString().split('T')[0];
+  const allUrls = [];
+  const allNodes = {};
+  let totalFiles = 0;
+
+  for (const r of repos) {
+    const files = [];
+    const nodes = [];
+    allNodes[r.repo] = nodes;
+
+    try {
+      setStatus(`Exploration de ${r.repo}...`, 'running');
+      await crawl(r.repo, '', 0, files, nodes);
+      totalFiles += files.length;
+
+      // Root URL
+      allUrls.push({ loc: r.base + '/', priority: '1.0', freq: 'monthly', repo: r.repo });
+
+      // File URLs
+      for (const f of files) {
+        if (f.endsWith('.html') && !f.startsWith('google')) {
+          allUrls.push({ loc: r.base + '/' + f, priority: '0.8', freq: 'monthly', repo: r.repo });
+        } else if (f.endsWith('.txt') && !f.includes('placeholder')) {
+          allUrls.push({ loc: r.base + '/' + f, priority: '0.7', freq: 'weekly', repo: r.repo });
+        } else if (f.endsWith('.zip')) {
+          allUrls.push({ loc: r.base + '/' + f, priority: '0.6', freq: 'monthly', repo: r.repo });
+        }
+      }
+    } catch(e) {
+      setStatus(`Erreur sur ${r.repo} : ${e.message}`, 'error');
+    }
+  }
+
+  // Build XML
+  let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+  xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n\n`;
+  xml += `  <!-- Généré le ${today} — ejsnews.github.io -->\n`;
+  xml += `  <!-- Eric Jacob Simon — Independent Researcher -->\n`;
+  xml += `  <!-- ${allUrls.length} URLs · ${repos.length} dépôts -->\n\n`;
+
+  let currentRepo = '';
+  for (const u of allUrls) {
+    if (u.repo !== currentRepo) {
+      xml += `\n  <!-- ═══ ${u.repo} ═══ -->\n`;
+      currentRepo = u.repo;
+    }
+    xml += `  <url>\n`;
+    xml += `    <loc>${u.loc}</loc>\n`;
+    xml += `    <lastmod>${today}</lastmod>\n`;
+    xml += `    <changefreq>${u.freq}</changefreq>\n`;
+    xml += `    <priority>${u.priority}</priority>\n`;
+    xml += `  </url>\n`;
+  }
+  xml += `\n</urlset>`;
+
+  document.getElementById('sitemap-out').value = xml;
+
+  // Tree
+  const treeWrap = document.getElementById('tree-out');
+  treeWrap.innerHTML = '';
+  for (const r of repos) {
+    const section = document.createElement('div');
+    section.className = 'tree-repo';
+    const title = document.createElement('div');
+    title.className = 'tree-repo-title';
+    title.textContent = `📦 ${r.repo} — ${r.base}/`;
+    section.appendChild(title);
+    for (const node of (allNodes[r.repo] || [])) {
+      const el = document.createElement('div');
+      el.className = 'tree-item';
+      const indent = '│  '.repeat(node.depth);
+      const prefix = node.depth > 0 ? '├─ ' : '';
+      const icon = node.type === 'dir' ? '📁' : getIcon(node.name);
+      el.innerHTML = `<span style="color:var(--muted);font-size:10px">${indent}${prefix}</span>${icon} ${node.name}`;
+      section.appendChild(el);
+    }
+    treeWrap.appendChild(section);
+  }
+
+  // Stats
+  document.getElementById('count-repos').textContent = repos.length;
+  document.getElementById('count-files').textContent = totalFiles;
+  document.getElementById('count-urls').textContent = allUrls.length;
+  document.getElementById('stats').style.display = 'flex';
+
+  setStatus(`Terminé — ${allUrls.length} URLs · ${repos.length} dépôts`, 'done');
+  btn.disabled = false;
+}
+
+function switchTab(name, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('panel-' + name).classList.add('active');
+}
+
+function copyText(id) {
+  const el = document.getElementById(id);
+  const text = el.tagName === 'TEXTAREA' ? el.value : el.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    setStatus('Copié dans le presse-papier ✓', 'done');
+  });
+}
+
+window.onload = () => generate();
+</script>
+</body>
+</html>
