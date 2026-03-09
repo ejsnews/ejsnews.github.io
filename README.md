@@ -1,4 +1,4 @@
-# Eric Jacob Simon — ejsnews.github.io
+## Eric Jacob Simon — ejsnews.github.io
 
 **FR** | Site de recherche indépendante en mathématiques théoriques et physique mathématique.  
 **EN** | Independent research website in theoretical mathematics and mathematical physics.
