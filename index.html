@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eric Jacob Simon — Chercheur Indépendant</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@300;400&display=swap');
+
+  :root {
+    --bg:       #080810;
+    --bg2:      #0e0e1c;
+    --border:   #1e1e3a;
+    --gold:     #c8a96e;
+    --gold2:    #e8c98e;
+    --silver:   #8899bb;
+    --text:     #d4d8e8;
+    --muted:    #5a607a;
+    --green:    #4a9a6a;
+    --radius:   6px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── Fond étoilé ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 15% 20%, rgba(200,169,110,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 72% 8%,  rgba(200,169,110,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 40% 55%, rgba(200,169,110,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 88% 42%, rgba(200,169,110,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5%  80%, rgba(200,169,110,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 90%, rgba(200,169,110,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 65%, rgba(136,153,187,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 95% 70%, rgba(136,153,187,0.2) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Halo central ── */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(ellipse, rgba(200,169,110,0.04) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── Header ── */
+  header {
+    padding: 72px 0 48px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 300;
+    color: #eef0f8;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .tagline {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: var(--muted);
+    font-style: italic;
+    letter-spacing: 0.02em;
+  }
+
+  .since {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* ── Intro ── */
+  .intro {
+    padding: 52px 0 44px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .intro p {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #aab0c8;
+    line-height: 1.8;
+  }
+
+  .intro p + p { margin-top: 1rem; }
+
+  /* ── Cards ── */
+  .section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 44px 0 20px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .card {
+    display: block;
+    text-decoration: none;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    transition: border-color 0.25s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--card-accent, var(--gold)), transparent);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .card:hover { border-color: var(--card-accent, var(--gold)); transform: translateY(-2px); }
+  .card:hover::before { opacity: 1; }
+
+  .card-icon {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .card h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #dde0f0;
+    margin-bottom: 8px;
+    letter-spacing: 0.01em;
+  }
+
+  .card p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .card .status {
+    display: inline-block;
+    margin-top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.04);
+    color: var(--card-accent, var(--gold));
+    border: 1px solid var(--card-accent, var(--gold));
+    opacity: 0.7;
+  }
+
+  /* variantes couleur par carte */
+  .card-atlas  { --card-accent: var(--gold); }
+  .card-primes { --card-accent: #6a9fd8; }
+  .card-game   { --card-accent: #9a6ad8; }
+  .card-novels { --card-accent: var(--green); }
+
+  /* card désactivée (à venir) */
+  .card-soon {
+    opacity: 0.45;
+    cursor: default;
+    pointer-events: none;
+  }
+  .card-soon:hover { transform: none; }
+
+  /* ── Soutien ── */
+  .support {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .support-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .support-text {
+    font-size: 0.95rem;
+    color: #8890a8;
+    max-width: 600px;
+    margin-bottom: 24px;
+    line-height: 1.7;
+  }
+
+  .support-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .btn {
+    display: inline-block;
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 9px 18px;
+    border-radius: var(--radius);
+    border: 1px solid;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .btn-patreon {
+    color: #f96854;
+    border-color: #f96854;
+  }
+  .btn-patreon:hover {
+    background: #f96854;
+    color: #fff;
+  }
+
+  .btn-paypal {
+    color: #009cde;
+    border-color: #009cde;
+  }
+  .btn-paypal:hover {
+    background: #009cde;
+    color: #fff;
+  }
+
+  .btn-crypto {
+    color: var(--muted);
+    border-color: var(--border);
+    font-size: 10px;
+  }
+  .btn-crypto:hover {
+    border-color: var(--muted);
+    color: var(--text);
+  }
+
+  /* ── Footer ── */
+  footer {
+    padding: 36px 0 48px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .footer-contact {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .footer-contact:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 540px) {
+    header { padding: 48px 0 32px; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- Header -->
+  <header>
+    <div class="eyebrow">EJSNews · Recherche indépendante</div>
+    <h1><em>Eric Jacob Simon</em><br>Mathématicien &amp; Physicien</h1>
+    <p class="tagline">Récurrences linéaires · Nombres premiers · Codex · Cosmologie</p>
+    <span class="since">Recherches depuis 1987</span>
+  </header>
+
+  <!-- Intro -->
+  <div class="intro">
+    <p>
+      Une théorie unificatrice reliant la physique quantique, la cosmologie et les structures
+      profondes des nombres — des formules symboliques exactes pour des récurrences de tout degré,
+      des séquences infinies de nombres premiers organisées en forêts fractales,
+      et un Codex mathématique qui encode l'univers depuis l'échelle de Planck jusqu'au cosmos.
+    </p>
+    <p>
+      Les travaux complets sont horodatés et archivés. Les dépôts publics en constituent
+      la trace vérifiable.
+    </p>
+  </div>
+
+  <!-- Projets -->
+  <div class="section-title">— Projets publiés</div>
+
+  <div class="cards">
+
+    <!-- Récurrences & Atlas -->
+    <a class="card card-atlas" href="https://ejsnews.github.io/universal-atlas/" target="_blank" rel="noopener">
+      <span class="card-icon">∑</span>
+      <h2>Récurrences Linéaires &amp; Atlas</h2>
+      <p>300 000 constantes géométriques à 50 chiffres. Formules symboliques exactes (LaTeX). Théorie achevée et vérifiée en Python.</p>
+      <span class="status">✓ En ligne</span>
+    </a>
+
+    <!-- Forêts de premiers -->
+    <a class="card card-primes" href="https://ejsnews.github.io/ejsnews/" target="_blank" rel="noopener">
+      <span class="card-icon">𝕻</span>
+      <h2>Forêts de Nombres Premiers</h2>
+      <p>Séquences infinies déterministes, arbres et branches du Codex. Architecture fractale reliant le monde de Planck au cosmos.</p>
+      <span class="status">⬡ Recherche active</span>
+    </a>
+
+    <!-- Jeu Prima Lux -->
+    <a class="card card-game" href="https://ejsnews.github.io/primes-trees/PNG_trees/monopoly/prima_lux_logic_obfuscated.html" target="_blank" rel="noopener">
+      <span class="card-icon">✦</span>
+      <h2>Prima Lux — Jeu Cosmique</h2>
+      <p>Prototype jouable du Monopoly Quantique fondé sur le Codex. Prochainement : cartes imprimables, RPG, fichiers STL 3D.</p>
+      <span class="status">▶ Jouable</span>
+    </a>
+
+    <!-- Romans -->
+    <a class="card card-novels" href="https://www.amazon.com/stores/Eric-Jacob/author/B004MKZVQC" target="_blank" rel="noopener">
+      <span class="card-icon">✦</span>
+      <h2>Romans de Science-Fiction</h2>
+      <p><em>Virus d'Immortalité</em> · <em>Chroniques de l'Omnivers</em>. La théorie mise en récit — disponibles sur Amazon (FR &amp; EN).</p>
+      <span class="status">⇗ Amazon</span>
+    </a>
+
+    <!-- Manifeste — à venir -->
+    <div class="card card-soon">
+      <span class="card-icon">◎</span>
+      <h2>Manifeste Théorique</h2>
+      <p>Synthèse unificatrice — de l'échelle de Planck au cosmos. En préparation.</p>
+      <span class="status">◌ À venir</span>
+    </div>
+
+  </div>
+
+  <!-- Soutien -->
+  <div class="support">
+    <div class="support-title">— Soutenir la recherche</div>
+    <p class="support-text">
+      Chercheur indépendant, sans financement institutionnel. Chaque contribution,
+      même modeste, permet de poursuivre la formalisation du Codex, les mises à jour
+      du jeu et l'impression 3D future.
+    </p>
+    <div class="support-links">
+      <a class="btn btn-patreon" href="https://www.patreon.com/ejsnews" target="_blank" rel="noopener">Patreon · 3€/mois</a>
+      <a class="btn btn-paypal"  href="https://www.paypal.com/donate/?hosted_button_id=QH8RUT9WP99DL" target="_blank" rel="noopener">PayPal · Don</a>
+      <a class="btn btn-crypto"  href="https://ejsnews.github.io/primes-trees/PNG_trees/monopoly/prima_lux_logic_obfuscated.html#support" target="_blank" rel="noopener">Crypto (ETH · SOL · BSC)</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <span class="footer-copy">© 2026 Eric Jacob Simon — CC BY-NC 4.0</span>
+    <a class="footer-contact" href="mailto:ejsnews@gmail.com">ejsnews@gmail.com</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
