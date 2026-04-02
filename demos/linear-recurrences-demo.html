@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Récurrences Linéaires EJS — 7 Cas Remarquables</title>
+<title>Récurrences Linéaires EJS — 8 Cas Remarquables</title>
 <script>
 window.MathJax = {
   tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
@@ -24,11 +24,11 @@ window.MathJax = {
     --text:    #e8eaf8;
     --seq:     #c8d4f0;
     --radius:  5px;
-    --c1: #d4b47a;  /* réduction */
-    --c2: #6a9fd8;  /* cyclique  */
-    --c3: #9a6ad8;  /* complexe  */
-    --c4: #5aaa7a;  /* polynomial*/
-    --c5: #d87a7a;  /* degré élevé */
+    --c1: #d4b47a;
+    --c2: #6a9fd8;
+    --c3: #9a6ad8;
+    --c4: #5aaa7a;
+    --c5: #d87a7a;
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -57,27 +57,32 @@ window.MathJax = {
     max-width:920px; margin:0 auto; padding:0 24px 64px;
   }
 
+  /* ── Lang toggle ── */
+  .lang-bar { text-align:right; padding:14px 0 0; }
+  #lang-btn {
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px; letter-spacing:2px; text-transform:uppercase;
+    background:transparent; border:1px solid var(--border);
+    color:var(--muted); padding:5px 14px; border-radius:20px;
+    cursor:pointer; transition:border-color 0.2s, color 0.2s;
+  }
+  #lang-btn:hover { border-color:var(--gold); color:var(--gold); }
+
   /* ── Nav ── */
   .topnav {
-    padding: 16px 0;
+    padding: 12px 0;
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px; letter-spacing: 2px;
     color: var(--muted);
     border-bottom: 1px solid var(--border);
     display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
   }
-  .topnav a {
-    color: var(--muted); text-decoration: none;
-    transition: color 0.2s;
-  }
+  .topnav a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .topnav a:hover { color: var(--gold); }
   .topnav .sep { opacity: 0.3; }
 
   /* ── Header ── */
-  header {
-    padding: 52px 0 40px;
-    border-bottom: 1px solid var(--border);
-  }
+  header { padding: 48px 0 36px; border-bottom: 1px solid var(--border); }
   .eyebrow {
     font-family:'JetBrains Mono', monospace;
     font-size:10px; letter-spacing:3px; text-transform:uppercase;
@@ -85,14 +90,10 @@ window.MathJax = {
   }
   h1 {
     font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight:300; color:#eef0f8; line-height:1.2;
-    margin-bottom: 16px;
+    font-weight:300; color:#eef0f8; line-height:1.2; margin-bottom:16px;
   }
   h1 em { font-style:italic; color:var(--gold); }
-  .subtitle {
-    font-size:1rem; color:#9aa2be;
-    max-width:680px; line-height:1.75;
-  }
+  .subtitle { font-size:1rem; color:#9aa2be; max-width:680px; line-height:1.75; }
   .author {
     margin-top:20px;
     font-family:'JetBrains Mono', monospace;
@@ -102,19 +103,15 @@ window.MathJax = {
 
   /* ── Intro ── */
   .intro {
-    padding: 40px 0 32px;
-    border-bottom: 1px solid var(--border);
-    color: #bcc4dc;
-    font-size: 0.98rem;
-    line-height: 1.85;
+    padding: 36px 0 28px; border-bottom: 1px solid var(--border);
+    color: #bcc4dc; font-size:0.98rem; line-height:1.85;
   }
-  .intro p + p { margin-top: 0.9rem; }
+  .intro p + p { margin-top:0.9rem; }
 
   /* ── Index rapide ── */
   .index {
-    padding: 28px 0;
-    border-bottom: 1px solid var(--border);
-    display: flex; flex-wrap: wrap; gap: 8px;
+    padding:24px 0; border-bottom:1px solid var(--border);
+    display:flex; flex-wrap:wrap; gap:8px;
   }
   .index a {
     font-family:'JetBrains Mono', monospace;
@@ -127,69 +124,57 @@ window.MathJax = {
 
   /* ── Cases ── */
   .case {
-    margin-top: 48px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    position: relative;
+    margin-top:48px; border:1px solid var(--border);
+    border-radius:8px; overflow:hidden; position:relative;
   }
   .case::before {
-    content:''; position:absolute;
-    top:0; left:0; right:0; height:3px;
-    background: linear-gradient(90deg, transparent, var(--case-color, var(--gold)), transparent);
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background:linear-gradient(90deg, transparent, var(--case-color, var(--gold)), transparent);
   }
-
   .case-header {
-    background: var(--bg2);
-    padding: 22px 28px 18px;
-    border-bottom: 1px solid var(--border);
+    background:var(--bg2); padding:22px 28px 18px;
+    border-bottom:1px solid var(--border);
   }
   .case-num {
     font-family:'JetBrains Mono', monospace;
     font-size:9px; letter-spacing:3px; text-transform:uppercase;
-    color:var(--case-color, var(--gold)); opacity:0.8;
-    margin-bottom:8px;
+    color:var(--case-color, var(--gold)); opacity:0.8; margin-bottom:8px;
   }
-  .case-title {
-    font-size:1.3rem; font-weight:600; color:#dde2f4;
-    margin-bottom:6px;
-  }
+  .case-title { font-size:1.3rem; font-weight:600; color:#dde2f4; margin-bottom:8px; }
   .case-ejs {
     font-family:'JetBrains Mono', monospace;
     font-size:11px; color:var(--case-color, var(--gold));
-    background: rgba(255,255,255,0.04);
+    background:rgba(255,255,255,0.04);
     display:inline-block; padding:3px 10px; border-radius:3px;
-    border: 1px solid rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.08);
   }
+  .pdf-link {
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px; letter-spacing:1px;
+    color:var(--muted); text-decoration:none;
+    margin-left:12px;
+    border:1px solid var(--border);
+    padding:2px 8px; border-radius:3px;
+    transition:color 0.2s, border-color 0.2s;
+  }
+  .pdf-link:hover { color:var(--gold); border-color:var(--gold); }
 
-  .case-body { padding: 24px 28px; }
+  .case-body { padding:24px 28px; }
 
   .def-block {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 14px 18px;
+    background:var(--bg3); border:1px solid var(--border);
+    border-radius:var(--radius); padding:14px 18px;
     font-family:'JetBrains Mono', monospace;
-    font-size:12px; color:#9aa8cc;
-    line-height:1.7;
-    margin-bottom:20px;
-    overflow-x:auto;
+    font-size:12px; color:#9aa8cc; line-height:1.7;
+    margin-bottom:20px; overflow-x:auto;
   }
-
   .formula-block {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--case-color, var(--gold));
-    border-radius: var(--radius);
-    padding: 18px 22px;
-    margin-bottom:20px;
-    overflow-x:auto;
-    font-size:1.05rem;
+    background:var(--bg2); border:1px solid var(--border);
+    border-left:3px solid var(--case-color, var(--gold));
+    border-radius:var(--radius); padding:18px 22px;
+    margin-bottom:20px; overflow-x:auto; font-size:1.05rem;
   }
-
-  .seq-block {
-    margin-bottom:18px;
-  }
+  .seq-block { margin-bottom:18px; }
   .seq-label {
     font-family:'JetBrains Mono', monospace;
     font-size:9px; letter-spacing:2px; text-transform:uppercase;
@@ -198,20 +183,13 @@ window.MathJax = {
   .seq-val {
     font-family:'JetBrains Mono', monospace;
     font-size:12px; color:var(--seq);
-    background: var(--bg3);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:10px 14px;
-    overflow-x:auto;
-    white-space:nowrap;
-    line-height:1.5;
+    background:var(--bg3); border:1px solid var(--border);
+    border-radius:var(--radius); padding:10px 14px;
+    overflow-x:auto; white-space:nowrap; line-height:1.5;
   }
-
   .insight {
-    border-top: 1px solid var(--border);
-    margin-top:18px; padding-top:16px;
-    font-size:0.93rem; color:#9aa2be;
-    line-height:1.75;
+    border-top:1px solid var(--border); margin-top:18px; padding-top:16px;
+    font-size:0.93rem; color:#9aa2be; line-height:1.75;
   }
   .insight strong { color:var(--case-color, var(--gold)); font-weight:600; }
 
@@ -219,14 +197,11 @@ window.MathJax = {
     display:inline-block;
     font-family:'JetBrains Mono', monospace;
     font-size:9px; letter-spacing:1.5px; text-transform:uppercase;
-    padding:2px 8px; border-radius:3px;
-    margin-left:8px; vertical-align:middle;
+    padding:2px 8px; border-radius:3px; margin-left:8px; vertical-align:middle;
     border:1px solid var(--case-color, var(--gold));
-    color:var(--case-color, var(--gold));
-    opacity:0.7;
+    color:var(--case-color, var(--gold)); opacity:0.7;
   }
 
-  /* couleurs par cas */
   .c-reduction  { --case-color: var(--c1); }
   .c-cyclic     { --case-color: var(--c2); }
   .c-complex    { --case-color: var(--c3); }
@@ -235,22 +210,15 @@ window.MathJax = {
 
   /* ── Footer ── */
   footer {
-    margin-top:64px; padding:28px 0;
-    border-top: 1px solid var(--border);
+    margin-top:64px; padding:28px 0; border-top:1px solid var(--border);
     display:flex; flex-wrap:wrap; gap:12px;
     justify-content:space-between; align-items:center;
   }
-  .footer-copy {
-    font-family:'JetBrains Mono', monospace;
-    font-size:10px; color:var(--muted);
-  }
-  .footer-links {
-    display:flex; gap:16px;
-  }
+  .footer-copy { font-family:'JetBrains Mono', monospace; font-size:10px; color:var(--muted); }
+  .footer-links { display:flex; gap:16px; }
   .footer-links a {
-    font-family:'JetBrains Mono', monospace;
-    font-size:10px; color:var(--muted); text-decoration:none;
-    transition:color 0.2s;
+    font-family:'JetBrains Mono', monospace; font-size:10px;
+    color:var(--muted); text-decoration:none; transition:color 0.2s;
   }
   .footer-links a:hover { color:var(--gold); }
 
@@ -263,25 +231,44 @@ window.MathJax = {
 <body>
 <div class="wrap">
 
+  <!-- Lang toggle -->
+  <div class="lang-bar">
+    <button id="lang-btn" onclick="toggleLang()">EN</button>
+  </div>
+
   <!-- Nav -->
   <nav class="topnav">
-    <a href="https://ejsnews.github.io/">← Accueil</a>
+    <a href="https://ejsnews.github.io/">
+      <span class="fr">← Accueil</span><span class="en" hidden>← Home</span>
+    </a>
     <span class="sep">|</span>
-    <a href="https://ejsnews.github.io/universal-atlas/">Atlas des Constantes</a>
+    <a href="https://ejsnews.github.io/universal-atlas/">
+      <span class="fr">Atlas des Constantes</span><span class="en" hidden>Constants Atlas</span>
+    </a>
     <span class="sep">|</span>
-    <a href="https://ejsnews.github.io/ejsnews/">Recherches</a>
+    <a href="https://ejsnews.github.io/ejsnews/">
+      <span class="fr">Recherches</span><span class="en" hidden>Research</span>
+    </a>
     <span class="sep">|</span>
     <span>© 2026 Eric Jacob Simon</span>
   </nav>
 
   <!-- Header -->
   <header>
-    <div class="eyebrow">EJS Linear Recurrences — Démonstration</div>
-    <h1>Sept Récurrences <em>Remarquables</em></h1>
-    <p class="subtitle">
+    <div class="eyebrow">EJS Linear Recurrences — <span class="fr">Démonstration</span><span class="en" hidden>Demonstration</span></div>
+    <h1>
+      <span class="fr">Huit Récurrences <em>Remarquables</em></span>
+      <span class="en" hidden>Eight <em>Remarkable</em> Recurrences</span>
+    </h1>
+    <p class="subtitle fr">
       Illustration de la théorie EJS des récurrences linéaires généralisées :
-      réductions, résonnances polynomiales, cycles, racines complexes conjuguées
-      et formules symboliques exactes calculées par le moteur EJS.
+      réductions, résonances polynomiales, cycles, racines complexes conjuguées,
+      coefficients rationnels et formules symboliques exactes calculées par le moteur EJS.
+    </p>
+    <p class="subtitle en" hidden>
+      Illustration of the EJS theory of generalized linear recurrences:
+      reductions, polynomial resonances, cycles, complex conjugate roots,
+      rational coefficients and exact symbolic formulas computed by the EJS engine.
     </p>
     <div class="author">
       Eric Jacob Simon (ORCID: <a href="https://orcid.org/0000-0002-6572-3985">0000-0002-6572-3985</a>)
@@ -292,59 +279,86 @@ window.MathJax = {
 
   <!-- Intro -->
   <div class="intro">
-    <p>
+    <p class="fr">
       La <strong>nomenclature EJS</strong> encode les récurrences linéaires homogènes sous la forme
       <code>EJS_[conditions initiales]_[coefficients moteur]</code>.
       Les marqueurs <code>P</code> (positif) et <code>N</code> (négatif) précèdent chaque coefficient ;
       <code>I</code> désigne l'unité imaginaire. Les formules symboliques exactes sont calculées
       pour tout degré et tout coefficient complexe ou fractionnaire.
     </p>
-    <p>
-      Les sept exemples ci-dessous illustrent des propriétés structurelles fondamentales :
+    <p class="en" hidden>
+      The <strong>EJS nomenclature</strong> encodes homogeneous linear recurrences as
+      <code>EJS_[initial conditions]_[engine coefficients]</code>.
+      Markers <code>P</code> (positive) and <code>N</code> (negative) precede each coefficient;
+      <code>I</code> denotes the imaginary unit. Exact symbolic formulas are computed
+      for any degree and any complex or fractional coefficient.
+    </p>
+    <p class="fr">
+      Les huit exemples ci-dessous illustrent des propriétés structurelles fondamentales :
       collapse d'une récurrence de degré 5 vers Fibonacci, résonance vers un polynôme,
-      séquence de degré 8 périodique simple, symétrie de permutation entre régime cyclique
-      et régime exponentiel, et comportement des conditions initiales complexes.
+      séquence de degré 8 périodique, symétrie de permutation entre régime cyclique
+      et exponentiel, coefficients rationnels produisant une formule irrationnelle,
+      et comportement des coefficients complexes.
+    </p>
+    <p class="en" hidden>
+      The eight examples below illustrate fundamental structural properties:
+      collapse of a degree-5 recurrence to Fibonacci, resonance toward a polynomial,
+      degree-8 periodic sequence, permutation symmetry between cyclic and exponential regimes,
+      rational coefficients yielding an irrational formula,
+      and complex coefficient behaviour.
     </p>
   </div>
 
   <!-- Index -->
   <div class="index">
-    <a href="#cas1">① Réduction deg.5→Fibonacci</a>
-    <a href="#cas2">② Résonance polynomiale</a>
-    <a href="#cas3">③ Deg.8 périodique</a>
-    <a href="#cas4">④ Deg.6 formule étendue</a>
-    <a href="#cas5">⑤ Cyclique — racines complexes</a>
-    <a href="#cas6">⑥ Permutation → Fibonacci</a>
-    <a href="#cas7">⑦ Conditions initiales complexes</a>
+    <a href="#cas1">① <span class="fr">Réduction deg.5→Fibonacci</span><span class="en" hidden>Reduction deg.5→Fibonacci</span></a>
+    <a href="#cas2">② <span class="fr">Résonance polynomiale</span><span class="en" hidden>Polynomial resonance</span></a>
+    <a href="#cas3">③ <span class="fr">Deg.8 périodique</span><span class="en" hidden>Deg.8 periodic</span></a>
+    <a href="#cas4">④ <span class="fr">Deg.6 formule étendue</span><span class="en" hidden>Deg.6 extended formula</span></a>
+    <a href="#cas5">⑤ <span class="fr">Cyclique — racines complexes</span><span class="en" hidden>Cyclic — complex roots</span></a>
+    <a href="#cas6">⑥ <span class="fr">Permutation → Fibonacci</span><span class="en" hidden>Permutation → Fibonacci</span></a>
+    <a href="#cas7">⑦ <span class="fr">Conditions initiales complexes</span><span class="en" hidden>Complex initial conditions</span></a>
+    <a href="#cas8">⑧ <span class="fr">Coefficients rationnels ℚ→ℝ</span><span class="en" hidden>Rational coefficients ℚ→ℝ</span></a>
   </div>
 
   <!-- ═══════════════════════════════════════════════════════ CAS 1 -->
   <div class="case c-reduction" id="cas1">
     <div class="case-header">
-      <div class="case-num">Cas 01 — Réduction</div>
-      <div class="case-title">Degré 5 qui se réduit à Fibonacci <span class="badge">réduction</span></div>
+      <div class="case-num"><span class="fr">Cas 01 — Réduction</span><span class="en" hidden>Case 01 — Reduction</span></div>
+      <div class="case-title">
+        <span class="fr">Degré 5 qui se réduit à Fibonacci</span>
+        <span class="en" hidden>Degree 5 reducing to Fibonacci</span>
+        <span class="badge"><span class="fr">réduction</span><span class="en" hidden>reduction</span></span>
+      </div>
       <div class="case-ejs">EJS_P1P1P2P3P5_P2P3N1P0P1</div>
+      <a class="pdf-link" href="pdf/Linear_Recurrences_EJS_P1P1P2P3P5_P2P3N1P0P1.pdf" target="_blank">↓ PDF</a>
     </div>
     <div class="case-body">
       <div class="def-block">
 LinearRecurrence[{1, 0, -1, 3, 2}, {1, 1, 2, 3, 5}, 30]
 a(n) = (2)·a(n-5) + (3)·a(n-4) + (-1)·a(n-3) + (0)·a(n-2) + (1)·a(n-1)
-Conditions initiales : a(0)=1, a(1)=1, a(2)=2, a(3)=3, a(4)=5
+<span class="fr">Conditions initiales</span><span class="en" hidden>Initial terms</span> : a(0)=1, a(1)=1, a(2)=2, a(3)=3, a(4)=5
       </div>
       <div class="formula-block">
         $$a(n) = - \frac{3 \cdot 2^{n} \sqrt{5}}{- 9 \sqrt{5} \left(-1 + \sqrt{5}\right)^{n} + 15 \left(-1 + \sqrt{5}\right)^{n}} + \frac{3 \cdot 2^{n}}{- 9 \sqrt{5} \left(-1 + \sqrt{5}\right)^{n} + 15 \left(-1 + \sqrt{5}\right)^{n}} + \frac{3 \left(\frac{1}{- \frac{\sqrt{5}}{2} - \frac{1}{2}}\right)^{n}}{15 + 9 \sqrt{5}} + \frac{3 \sqrt{5} \left(\frac{1}{- \frac{\sqrt{5}}{2} - \frac{1}{2}}\right)^{n}}{15 + 9 \sqrt{5}}$$
       </div>
       <div class="seq-block">
-        <div class="seq-label">Séquence (30 premiers termes)</div>
+        <div class="seq-label"><span class="fr">Séquence (30 premiers termes)</span><span class="en" hidden>Sequence (first 30 terms)</span></div>
         <div class="seq-val">1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040</div>
       </div>
       <div class="insight">
-        <strong>Propriété remarquable :</strong> cette récurrence de degré 5 aux coefficients
+        <strong class="fr">Propriété remarquable :</strong><strong class="en" hidden>Remarkable property:</strong>
+        <span class="fr">cette récurrence de degré 5 aux coefficients
         <code>{1, 0, -1, 3, 2}</code> génère exactement la séquence de Fibonacci.
         Le moteur EJS identifie automatiquement la réduction vers <code>EJS_P1P1_P1P1</code> (degré 2).
         La formule symbolique de degré 5 est formellement correcte mais se simplifie
         vers la formule de Binet. Les lois de réduction EJS permettent de détecter
-        ces équivalences pour tout degré.
+        ces équivalences pour tout degré.</span>
+        <span class="en" hidden>this degree-5 recurrence with coefficients
+        <code>{1, 0, -1, 3, 2}</code> generates exactly the Fibonacci sequence.
+        The EJS engine automatically identifies the reduction to <code>EJS_P1P1_P1P1</code> (degree 2).
+        The degree-5 symbolic formula is formally correct but simplifies to Binet's formula.
+        EJS reduction laws detect such equivalences at any degree.</span>
       </div>
     </div>
   </div>
@@ -352,30 +366,37 @@ Conditions initiales : a(0)=1, a(1)=1, a(2)=2, a(3)=3, a(4)=5
   <!-- ═══════════════════════════════════════════════════════ CAS 2 -->
   <div class="case c-polynomial" id="cas2">
     <div class="case-header">
-      <div class="case-num">Cas 02 — Résonance polynomiale</div>
-      <div class="case-title">Récurrence de degré 3 → formule polynomiale exacte <span class="badge">résonance</span></div>
+      <div class="case-num"><span class="fr">Cas 02 — Résonance polynomiale</span><span class="en" hidden>Case 02 — Polynomial resonance</span></div>
+      <div class="case-title">
+        <span class="fr">Récurrence de degré 3 → formule polynomiale exacte</span>
+        <span class="en" hidden>Degree-3 recurrence → exact polynomial formula</span>
+        <span class="badge"><span class="fr">résonance</span><span class="en" hidden>resonance</span></span>
+      </div>
       <div class="case-ejs">EJS_P11P23P47_P1N3P3</div>
+      <a class="pdf-link" href="pdf/Linear_Recurrences_EJS_P11P23P47_P1N3P3.pdf" target="_blank">↓ PDF</a>
     </div>
     <div class="case-body">
       <div class="def-block">
 LinearRecurrence[{3, -3, 1}, {11, 23, 47}, 30]
 a(n) = (1)·a(n-3) + (-3)·a(n-2) + (3)·a(n-1)
-Conditions initiales : a(0)=11, a(1)=23, a(2)=47
+<span class="fr">Conditions initiales</span><span class="en" hidden>Initial terms</span> : a(0)=11, a(1)=23, a(2)=47
       </div>
-      <div class="formula-block">
-        $$a(n) = 6n^2 + 6n + 11$$
-      </div>
+      <div class="formula-block">$$a(n) = 6n^2 + 6n + 11$$</div>
       <div class="seq-block">
-        <div class="seq-label">Séquence (30 premiers termes)</div>
+        <div class="seq-label"><span class="fr">Séquence (30 premiers termes)</span><span class="en" hidden>Sequence (first 30 terms)</span></div>
         <div class="seq-val">11, 23, 47, 83, 131, 191, 263, 347, 443, 551, 671, 803, 947, 1103, 1271, 1451, 1643, 1847, 2063, 2291, 2531, 2783, 3047, 3323, 3611, 3911, 4223, 4547, 4883, 5231</div>
       </div>
       <div class="insight">
-        <strong>Propriété remarquable :</strong> les racines caractéristiques du polynôme
-        $x^3 - 3x^2 + 3x - 1 = (x-1)^3$ sont toutes égales à 1 (racine triple).
-        Ce cas de résonance maximale produit une formule purement polynomiale de degré 2,
-        sans aucune exponentielle. C'est l'analogue discret d'une onde stationnaire :
-        la dynamique récurrente s'effondre vers une croissance algébrique.
-        Le degré du polynôme est lié à la multiplicité de la racine.
+        <strong class="fr">Propriété remarquable :</strong><strong class="en" hidden>Remarkable property:</strong>
+        <span class="fr">les racines caractéristiques du polynôme $x^3 - 3x^2 + 3x - 1 = (x-1)^3$
+        sont toutes égales à 1 (racine triple). Ce cas de résonance maximale produit une formule
+        purement polynomiale de degré 2, sans aucune exponentielle. C'est l'analogue discret
+        d'une onde stationnaire : la dynamique récurrente s'effondre vers une croissance algébrique.
+        Le degré du polynôme est lié à la multiplicité de la racine.</span>
+        <span class="en" hidden>the characteristic roots of $x^3 - 3x^2 + 3x - 1 = (x-1)^3$
+        are all equal to 1 (triple root). This maximum resonance case produces a purely polynomial
+        degree-2 formula with no exponentials — the discrete analogue of a standing wave.
+        The polynomial degree equals the root multiplicity.</span>
       </div>
     </div>
   </div>
@@ -383,38 +404,47 @@ Conditions initiales : a(0)=11, a(1)=23, a(2)=47
   <!-- ═══════════════════════════════════════════════════════ CAS 3 -->
   <div class="case c-high" id="cas3">
     <div class="case-header">
-      <div class="case-num">Cas 03 — Périodicité en degré élevé</div>
-      <div class="case-title">Récurrence de degré 8 à séquence périodique simple <span class="badge">période 8</span></div>
+      <div class="case-num"><span class="fr">Cas 03 — Périodicité en degré élevé</span><span class="en" hidden>Case 03 — Periodicity at high degree</span></div>
+      <div class="case-title">
+        <span class="fr">Récurrence de degré 8 à séquence périodique simple</span>
+        <span class="en" hidden>Degree-8 recurrence with simple periodic sequence</span>
+        <span class="badge"><span class="fr">période 8</span><span class="en" hidden>period 8</span></span>
+      </div>
       <div class="case-ejs">EJS_P0P1P2P3P4P5P0P0_P1P0P0P0P0P0P0P0</div>
+      <a class="pdf-link" href="pdf/Linear_Recurrences_EJS_P0P1P2P3P4P5P0P0_P1P0P0P0P0P0P0P0.pdf" target="_blank">↓ PDF</a>
     </div>
     <div class="case-body">
       <div class="def-block">
 LinearRecurrence[{0, 0, 0, 0, 0, 0, 0, 1}, {0, 1, 2, 3, 4, 5, 0, 0}, 30]
 a(n) = (1)·a(n-8)
-Conditions initiales : a(0)=0, a(1)=1, a(2)=2, a(3)=3, a(4)=4, a(5)=5, a(6)=0, a(7)=0
+<span class="fr">Conditions initiales</span><span class="en" hidden>Initial terms</span> : a(0)=0, a(1)=1, a(2)=2, a(3)=3, a(4)=4, a(5)=5, a(6)=0, a(7)=0
       </div>
       <div class="formula-block">
-        La formule symbolique exacte fait intervenir les 8 racines de l'unité
-        $e^{2i\pi k/8}$ pour $k=0,\ldots,7$, avec $\sqrt{2}$, $\sqrt{3}$ et termes en $(-1)^n$,
-        combinés de sorte que leur superposition reproduit exactement les conditions initiales
-        à chaque période. La fonction génératrice est :
-        $$G(z) = \frac{-5z^5 - 4z^4 - 3z^3- 2z^2 - z}{z^8 - 1}$$
+        <span class="fr">La formule symbolique exacte fait intervenir les 8 racines de l'unité
+        $e^{2i\pi k/8}$ pour $k=0,\ldots,7$, avec $\sqrt{2}$ et termes en $(-1)^n$.
+        La fonction génératrice est :</span>
+        <span class="en" hidden>The exact symbolic formula involves the 8 roots of unity
+        $e^{2i\pi k/8}$ for $k=0,\ldots,7$, with $\sqrt{2}$ and terms in $(-1)^n$.
+        The generating function is:</span>
+        $$G(z) = \frac{-5z^5 - 4z^4 - 3z^3 - 2z^2 - z}{z^8 - 1}$$
       </div>
       <div class="formula-block">
-        $$a(n) = - \frac{3 \left(-1\right)^{n}}{8} - \frac{7 \sqrt{2} \cdot 2^{n} \left(\sqrt{2} + \sqrt{2} i\right)^{- n}}{16} - \frac{2^{n} \left(\sqrt{2} + \sqrt{2} i\right)^{- n}}{2} - \frac{\sqrt{2} \cdot 2^{n} i \left(\sqrt{2} + \sqrt{2} i\right)^{- n}}{16} + \frac{2^{n} i \left(\sqrt{2} + \sqrt{2} i\right)^{- n}}{4} - \frac{7 \sqrt{2} \cdot 2^{n} \left(\sqrt{2} - \sqrt{2} i\right)^{- n}}{16} - \frac{2^{n} \left(\sqrt{2} - \sqrt{2} i\right)^{- n}}{2} - \frac{2^{n} i \left(\sqrt{2} - \sqrt{2} i\right)^{- n}}{4} + \frac{\sqrt{2} \cdot 2^{n} i \left(\sqrt{2} - \sqrt{2} i\right)^{- n}}{16} + \frac{i^{n}}{4} - \frac{3 i i^{n}}{8} + \frac{\left(- i\right)^{n}}{4} + \frac{3 i \left(- i\right)^{n}}{8} - \frac{\left(\frac{1}{- \frac{\sqrt{2}}{2} - \frac{\sqrt{2} i}{2}}\right)^{n}}{2} + \frac{7 \sqrt{2} \left(\frac{1}{- \frac{\sqrt{2}}{2} - \frac{\sqrt{2} i}{2}}\right)^{n}}{16} + \frac{\sqrt{2} i \left(\frac{1}{- \frac{\sqrt{2}}{2} - \frac{\sqrt{2} i}{2}}\right)^{n}}{16} + \frac{i \left(\frac{1}{- \frac{\sqrt{2}}{2} - \frac{\sqrt{2} i}{2}}\right)^{n}}{4} - \frac{\left(\frac{1}{- \frac{\sqrt{2}}{2} + \frac{\sqrt{2} i}{2}}\right)^{n}}{2} + \frac{7 \sqrt{2} \left(\frac{1}{- \frac{\sqrt{2}}{2} + \frac{\sqrt{2} i}{2}}\right)^{n}}{16} - \frac{i \left(\frac{1}{- \frac{\sqrt{2}}{2} + \frac{\sqrt{2} i}{2}}\right)^{n}}{4} - \frac{\sqrt{2} i \left(\frac{1}{- \frac{\sqrt{2}}{2} + \frac{\sqrt{2} i}{2}}\right)^{n}}{16} + \frac{15}{8}$$
+        $$a(n) = - \frac{3 \left(-1\right)^{n}}{8} - \frac{7 \sqrt{2} \cdot 2^{n} \left(\sqrt{2} + \sqrt{2} i\right)^{- n}}{16} - \frac{2^{n} \left(\sqrt{2} + \sqrt{2} i\right)^{- n}}{2} - \frac{\sqrt{2} \cdot 2^{n} i \left(\sqrt{2} + \sqrt{2} i\right)^{- n}}{16} + \frac{2^{n} i \left(\sqrt{2} + \sqrt{2} i\right)^{- n}}{4} - \frac{7 \sqrt{2} \cdot 2^{n} \left(\sqrt{2} - \sqrt{2} i\right)^{- n}}{16} - \frac{2^{n} \left(\sqrt{2} - \sqrt{2} i\right)^{- n}}{2} - \frac{2^{n} i \left(\sqrt{2} - \sqrt{2} i\right)^{- n}}{4} + \frac{\sqrt{2} \cdot 2^{n} i \left(\sqrt{2} - \sqrt{2} i\right)^{- n}}{16} + \frac{i^{n}}{4} - \frac{3 i \cdot i^{n}}{8} + \frac{\left(- i\right)^{n}}{4} + \frac{3 i \left(- i\right)^{n}}{8} - \frac{\left(\frac{1}{- \frac{\sqrt{2}}{2} - \frac{\sqrt{2} i}{2}}\right)^{n}}{2} + \frac{7 \sqrt{2} \left(\frac{1}{- \frac{\sqrt{2}}{2} - \frac{\sqrt{2} i}{2}}\right)^{n}}{16} + \frac{\sqrt{2} i \left(\frac{1}{- \frac{\sqrt{2}}{2} - \frac{\sqrt{2} i}{2}}\right)^{n}}{16} + \frac{i \left(\frac{1}{- \frac{\sqrt{2}}{2} - \frac{\sqrt{2} i}{2}}\right)^{n}}{4} - \frac{\left(\frac{1}{- \frac{\sqrt{2}}{2} + \frac{\sqrt{2} i}{2}}\right)^{n}}{2} + \frac{7 \sqrt{2} \left(\frac{1}{- \frac{\sqrt{2}}{2} + \frac{\sqrt{2} i}{2}}\right)^{n}}{16} - \frac{i \left(\frac{1}{- \frac{\sqrt{2}}{2} + \frac{\sqrt{2} i}{2}}\right)^{n}}{4} - \frac{\sqrt{2} i \left(\frac{1}{- \frac{\sqrt{2}}{2} + \frac{\sqrt{2} i}{2}}\right)^{n}}{16} + \frac{15}{8}$$
       </div>
       <div class="seq-block">
-        <div class="seq-label">Séquence (30 premiers termes)</div>
+        <div class="seq-label"><span class="fr">Séquence (30 premiers termes)</span><span class="en" hidden>Sequence (first 30 terms)</span></div>
         <div class="seq-val">0, 1, 2, 3, 4, 5, 0, 0, 0, 1, 2, 3, 4, 5, 0, 0, 0, 1, 2, 3, 4, 5, 0, 0, 0, 1, 2, 3, 4, 5</div>
       </div>
       <div class="insight">
-        <strong>Propriété remarquable :</strong> un moteur de degré 8 réduit à un seul coefficient
-        non nul ($a(n) = a(n-8)$) génère une séquence d'apparence triviale.
-        Pourtant la formule symbolique exacte est non triviale — elle fait intervenir
-        toutes les racines 8èmes de l'unité. C'est un cas limite où la complexité
-        de la formule masque la simplicité de la dynamique : les racines s'organisent
-        en une structure cristalline parfaite dont la superposition s'annule
-        sauf aux multiples de 8.
+        <strong class="fr">Propriété remarquable :</strong><strong class="en" hidden>Remarkable property:</strong>
+        <span class="fr">un moteur de degré 8 réduit à un seul coefficient non nul ($a(n) = a(n-8)$)
+        génère une séquence d'apparence triviale. Pourtant la formule symbolique exacte est non triviale —
+        elle fait intervenir toutes les racines 8èmes de l'unité. Les racines s'organisent en une structure
+        cristalline parfaite dont la superposition s'annule sauf aux multiples de 8.</span>
+        <span class="en" hidden>a degree-8 engine reduced to a single non-zero coefficient ($a(n) = a(n-8)$)
+        generates an apparently trivial sequence. Yet the exact symbolic formula is non-trivial —
+        it involves all 8th roots of unity, organised in a perfect crystalline structure whose
+        superposition cancels except at multiples of 8.</span>
       </div>
     </div>
   </div>
@@ -422,42 +452,49 @@ Conditions initiales : a(0)=0, a(1)=1, a(2)=2, a(3)=3, a(4)=4, a(5)=5, a(6)=0, a
   <!-- ═══════════════════════════════════════════════════════ CAS 4 -->
   <div class="case c-high" id="cas4">
     <div class="case-header">
-      <div class="case-num">Cas 04 — Formule de degré élevé</div>
-      <div class="case-title">Récurrence de degré 6 — formule symbolique étendue <span class="badge">deg. 6</span></div>
+      <div class="case-num"><span class="fr">Cas 04 — Formule de degré élevé</span><span class="en" hidden>Case 04 — High-degree formula</span></div>
+      <div class="case-title">
+        <span class="fr">Récurrence de degré 6 — formule symbolique étendue</span>
+        <span class="en" hidden>Degree-6 recurrence — extended symbolic formula</span>
+        <span class="badge">deg. 6</span>
+      </div>
       <div class="case-ejs">EJS_P1P1P1P1P1P1_P1P1P0P1P0P1</div>
+      <a class="pdf-link" href="pdf/Linear_Recurrences_EJS_P1P1P1P1P1P1_P1P1P0P1P0P1.pdf" target="_blank">↓ PDF</a>
     </div>
     <div class="case-body">
       <div class="def-block">
 LinearRecurrence[{1, 0, 1, 0, 1, 1}, {1, 1, 1, 1, 1, 1}, 30]
 a(n) = (1)·a(n-6) + (1)·a(n-5) + (0)·a(n-4) + (1)·a(n-3) + (0)·a(n-2) + (1)·a(n-1)
-Conditions initiales : a(0)=…=a(5)=1
+<span class="fr">Conditions initiales</span><span class="en" hidden>Initial terms</span> : a(0)=…=a(5)=1
       </div>
       <div class="formula-block">
-        La formule fait intervenir les 6 racines du polynôme caractéristique
+        <span class="fr">La formule fait intervenir les 6 racines du polynôme caractéristique
         $x^6 - x^5 - x^3 - x - 1 = 0$, dont deux réelles et quatre complexes conjuguées.
-        Elle contient $\sqrt{5}$, $\cos(2\pi/5)$, $\sin(2\pi/5)$ et leurs combinaisons. <br>
-		La fonction génératrice est :
-        $$G(z) = \frac{2z^5 + z^4 + z^3 - 1}{z^6 + z^5 + z^3 + z- 1}$$
-        <br><br>
+        Elle contient $\sqrt{3}\,i$ et $\sqrt{5}$. Fonction génératrice :</span>
+        <span class="en" hidden>The formula involves the 6 roots of $x^6 - x^5 - x^3 - x - 1 = 0$,
+        two real and four complex conjugate. It contains $\sqrt{3}\,i$ and $\sqrt{5}$. Generating function:</span>
+        $$G(z) = \frac{2z^5 + z^4 + z^3 - 1}{z^6 + z^5 + z^3 + z - 1}$$
+      </div>
       <div class="formula-block">
         $$a(n) = - \frac{9 \cdot 2^{n}}{12 \left(1 + \sqrt{3} i\right)^{n} + 12 \sqrt{3} i \left(1 + \sqrt{3} i\right)^{n}} + \frac{3 \cdot 2^{n} \sqrt{3} i}{12 \left(1 + \sqrt{3} i\right)^{n} + 12 \sqrt{3} i \left(1 + \sqrt{3} i\right)^{n}} - \frac{9 \cdot 2^{n}}{12 \left(1 - \sqrt{3} i\right)^{n} - 12 \sqrt{3} i \left(1 - \sqrt{3} i\right)^{n}} - \frac{3 \cdot 2^{n} \sqrt{3} i}{12 \left(1 - \sqrt{3} i\right)^{n} - 12 \sqrt{3} i \left(1 - \sqrt{3} i\right)^{n}} - \frac{21 \cdot 2^{n}}{- 40 \left(-1 + \sqrt{5}\right)^{n} + 16 \sqrt{5} \left(-1 + \sqrt{5}\right)^{n}} + \frac{9 \cdot 2^{n} \sqrt{5}}{- 40 \left(-1 + \sqrt{5}\right)^{n} + 16 \sqrt{5} \left(-1 + \sqrt{5}\right)^{n}} + \frac{\sqrt{3} i \left(\frac{1}{- \frac{1}{2} - \frac{\sqrt{3} i}{2}}\right)^{n}}{-12 - 4 \sqrt{3} i} - \frac{3 \left(\frac{1}{- \frac{1}{2} - \frac{\sqrt{3} i}{2}}\right)^{n}}{-12 - 4 \sqrt{3} i} - \frac{\sqrt{3} i \left(\frac{1}{- \frac{1}{2} + \frac{\sqrt{3} i}{2}}\right)^{n}}{-12 + 4 \sqrt{3} i} - \frac{3 \left(\frac{1}{- \frac{1}{2} + \frac{\sqrt{3} i}{2}}\right)^{n}}{-12 + 4 \sqrt{3} i} - \frac{9 \sqrt{5} \left(\frac{1}{- \frac{\sqrt{5}}{2} - \frac{1}{2}}\right)^{n}}{-40 - 16 \sqrt{5}} - \frac{21 \left(\frac{1}{- \frac{\sqrt{5}}{2} - \frac{1}{2}}\right)^{n}}{-40 - 16 \sqrt{5}}$$
-      </div>
-        <em>La formule complète est calculée par le moteur EJS sur
-        <a href="https://doowizz.ovh" style="color:var(--gold);">doowizz.ovh</a>
-        — elle dépasse 300 symboles LaTeX et ne peut être affichée statiquement
-        sans déstabiliser le navigateur.</em>
+        <br><em><span class="fr">La formule complète dépasse 300 symboles LaTeX — calculée sur</span>
+        <span class="en" hidden>Full formula exceeds 300 LaTeX symbols — computed at</span>
+        <a href="https://doowizz.ovh" style="color:var(--gold);">doowizz.ovh</a></em>
       </div>
       <div class="seq-block">
-        <div class="seq-label">Séquence (30 premiers termes)</div>
+        <div class="seq-label"><span class="fr">Séquence (30 premiers termes)</span><span class="en" hidden>Sequence (first 30 terms)</span></div>
         <div class="seq-val">1, 1, 1, 1, 1, 1, 4, 7, 10, 16, 25, 40, 67, 109, 175, 283, 457, 739, 1198, 1939, 3136, 5074, 8209, 13282, 21493, 34777, 56269, 91045, 147313, 238357</div>
       </div>
       <div class="insight">
-        <strong>Propriété remarquable :</strong> la croissance est dominée par la racine réelle
-        positive maximale $\rho \approx 1.6180...$ — proche du nombre d'or — mais les autres
-        racines introduisent des oscillations qui persistent longtemps avant de devenir négligeables.
-        Le cas illustre la limite pratique des formules symboliques : correctes et exactes,
-        elles deviennent trop volumineuses pour le rendu en ligne à partir du degré 5-6
-        selon les coefficients.
+        <strong class="fr">Propriété remarquable :</strong><strong class="en" hidden>Remarkable property:</strong>
+        <span class="fr">la croissance est dominée par la racine réelle positive maximale
+        $\rho \approx 1.6180...$ — proche du nombre d'or. Le cas illustre la limite pratique
+        des formules symboliques : correctes et exactes, elles deviennent trop volumineuses
+        pour le rendu en ligne à partir du degré 5-6 selon les coefficients.</span>
+        <span class="en" hidden>growth is dominated by the largest positive real root
+        $\rho \approx 1.6180...$ — close to the golden ratio. This case illustrates the practical limit
+        of symbolic formulas: correct and exact, they become too large for inline rendering
+        beyond degree 5-6 depending on coefficients.</span>
       </div>
     </div>
   </div>
@@ -465,31 +502,40 @@ Conditions initiales : a(0)=…=a(5)=1
   <!-- ═══════════════════════════════════════════════════════ CAS 5 -->
   <div class="case c-cyclic" id="cas5">
     <div class="case-header">
-      <div class="case-num">Cas 05 — Racines complexes conjuguées</div>
-      <div class="case-title">Moteur complexe → séquence réelle périodique <span class="badge">période 6</span></div>
+      <div class="case-num"><span class="fr">Cas 05 — Racines complexes conjuguées</span><span class="en" hidden>Case 05 — Complex conjugate roots</span></div>
+      <div class="case-title">
+        <span class="fr">Moteur complexe → séquence réelle périodique</span>
+        <span class="en" hidden>Complex engine → real periodic sequence</span>
+        <span class="badge"><span class="fr">période 6</span><span class="en" hidden>period 6</span></span>
+      </div>
       <div class="case-ejs">EJS_P1P0_N1P1</div>
+      <a class="pdf-link" href="pdf/Linear_Recurrences_EJS_P1P0_N1P1.pdf" target="_blank">↓ PDF</a>
     </div>
     <div class="case-body">
       <div class="def-block">
 LinearRecurrence[{1, -1}, {1, 0}, 30]
 a(n) = (-1)·a(n-2) + (1)·a(n-1)
-Conditions initiales : a(0)=1, a(1)=0
+<span class="fr">Conditions initiales</span><span class="en" hidden>Initial terms</span> : a(0)=1, a(1)=0
       </div>
       <div class="formula-block">
         $$a(n) = \frac{3 \cdot 2^{n}}{3 \left(1 + \sqrt{3} i\right)^{n} + 3 \sqrt{3} i \left(1 + \sqrt{3} i\right)^{n}} + \frac{2^{n} \sqrt{3} i}{3 \left(1 + \sqrt{3} i\right)^{n} + 3 \sqrt{3} i \left(1 + \sqrt{3} i\right)^{n}} + \frac{3 \cdot 2^{n}}{3 \left(1 - \sqrt{3} i\right)^{n} - 3 \sqrt{3} i \left(1 - \sqrt{3} i\right)^{n}} - \frac{2^{n} \sqrt{3} i}{3 \left(1 - \sqrt{3} i\right)^{n} - 3 \sqrt{3} i \left(1 - \sqrt{3} i\right)^{n}}$$
       </div>
       <div class="seq-block">
-        <div class="seq-label">Séquence (30 premiers termes)</div>
+        <div class="seq-label"><span class="fr">Séquence (30 premiers termes)</span><span class="en" hidden>Sequence (first 30 terms)</span></div>
         <div class="seq-val">1, 0, -1, -1, 0, 1, 1, 0, -1, -1, 0, 1, 1, 0, -1, -1, 0, 1, 1, 0, -1, -1, 0, 1, 1, 0, -1, -1, 0, 1</div>
       </div>
       <div class="insight">
-        <strong>Propriété remarquable :</strong> les racines caractéristiques sont
-        $e^{\pm i\pi/3}$ — sixièmes racines de l'unité — ce qui produit une séquence
-        <em>entièrement réelle et entière</em> à partir d'une formule contenant $\sqrt{3}\,i$.
-        La partie imaginaire s'annule terme à terme par conjugaison.
-        C'est le mécanisme fondamental des séries de Fourier discrètes :
-        une superposition d'oscillations complexes conjuguées encode
-        un signal réel. La période 6 correspond à $2\pi / (\pi/3)$.
+        <strong class="fr">Propriété remarquable :</strong><strong class="en" hidden>Remarkable property:</strong>
+        <span class="fr">les racines caractéristiques sont $e^{\pm i\pi/3}$ — sixièmes racines de l'unité —
+        ce qui produit une séquence <em>entièrement réelle et entière</em> à partir d'une formule
+        contenant $\sqrt{3}\,i$. La partie imaginaire s'annule terme à terme par conjugaison.
+        C'est le mécanisme fondamental des séries de Fourier discrètes.
+        La période 6 correspond à $2\pi / (\pi/3)$.</span>
+        <span class="en" hidden>the characteristic roots are $e^{\pm i\pi/3}$ — sixth roots of unity —
+        producing an <em>entirely real integer</em> sequence from a formula containing $\sqrt{3}\,i$.
+        The imaginary part cancels term by term through conjugation.
+        This is the fundamental mechanism of discrete Fourier series.
+        Period 6 corresponds to $2\pi / (\pi/3)$.</span>
       </div>
     </div>
   </div>
@@ -497,15 +543,20 @@ Conditions initiales : a(0)=1, a(1)=0
   <!-- ═══════════════════════════════════════════════════════ CAS 6 -->
   <div class="case c-reduction" id="cas6">
     <div class="case-header">
-      <div class="case-num">Cas 06 — Symétrie de permutation</div>
-      <div class="case-title">Permutation du moteur : cyclique → Fibonacci <span class="badge">permutation</span></div>
+      <div class="case-num"><span class="fr">Cas 06 — Symétrie de permutation</span><span class="en" hidden>Case 06 — Permutation symmetry</span></div>
+      <div class="case-title">
+        <span class="fr">Permutation du moteur : cyclique → Fibonacci</span>
+        <span class="en" hidden>Engine permutation: cyclic → Fibonacci</span>
+        <span class="badge"><span class="fr">permutation</span><span class="en" hidden>permutation</span></span>
+      </div>
       <div class="case-ejs">EJS_P1P0_P1N1</div>
+      <a class="pdf-link" href="pdf/Linear_Recurrences_EJS_P1P0_P1N1.pdf" target="_blank">↓ PDF</a>
     </div>
     <div class="case-body">
       <div class="def-block">
 LinearRecurrence[{-1, 1}, {1, 0}, 30]
 a(n) = (1)·a(n-2) + (-1)·a(n-1)
-Conditions initiales : a(0)=1, a(1)=0
+<span class="fr">Conditions initiales</span><span class="en" hidden>Initial terms</span> : a(0)=1, a(1)=0
       </div>
       <div class="formula-block">
         $$a(n) = \frac{5 \cdot 2^n}{5\left(1+\sqrt{5}\right)^n + 5\sqrt{5}\left(1+\sqrt{5}\right)^n}
@@ -514,18 +565,22 @@ Conditions initiales : a(0)=1, a(1)=0
         + \frac{3\sqrt{5}\left(\frac{1}{\frac{\sqrt{5}}{2}+\frac{1}{2}}\right)^n}{5 - 5\sqrt{5}}$$
       </div>
       <div class="seq-block">
-        <div class="seq-label">Séquence (30 premiers termes)</div>
+        <div class="seq-label"><span class="fr">Séquence (30 premiers termes)</span><span class="en" hidden>Sequence (first 30 terms)</span></div>
         <div class="seq-val">1, 0, 1, -1, 2, -3, 5, -8, 13, -21, 34, -55, 89, -144, 233, -377, 610, -987, 1597, -2584, 4181, -6765, 10946, -17711, 28657, -46368, 75025, -121393, 196418, -317811</div>
       </div>
       <div class="insight">
-        <strong>Propriété remarquable :</strong> les moteurs <code>(-1, 1)</code> et <code>(1, -1)</code>
-        (cas 05 et 06) ne diffèrent que par l'ordre de leurs coefficients — une simple permutation.
-        Pourtant le résultat est radicalement différent : le cas 05 produit une séquence
-        périodique bornée (racines sur le cercle unité), le cas 06 une séquence
-        à croissance exponentielle en valeur absolue (Fibonacci à signes alternés,
-        racines réelles hors du cercle unité).
-        Cette bifurcation illustre la sensibilité structurelle aux permutations de coefficients,
-        centrale dans la théorie EJS des forêts de récurrences.
+        <strong class="fr">Propriété remarquable :</strong><strong class="en" hidden>Remarkable property:</strong>
+        <span class="fr">les moteurs <code>(-1, 1)</code> (cas 05) et <code>(1, -1)</code> (cas 06)
+        ne diffèrent que par la permutation de leurs coefficients. Pourtant le résultat est radicalement
+        différent : séquence périodique bornée d'un côté (racines sur le cercle unité),
+        croissance exponentielle de l'autre (Fibonacci à signes alternés, racines hors du cercle).
+        Cette bifurcation illustre la sensibilité structurelle aux permutations, centrale
+        dans la théorie EJS des forêts de récurrences.</span>
+        <span class="en" hidden>engines <code>(-1, 1)</code> (case 05) and <code>(1, -1)</code> (case 06)
+        differ only by a permutation of their coefficients. Yet the result is radically different:
+        bounded periodic sequence on one side (roots on the unit circle), exponential growth on the other
+        (signed Fibonacci, roots outside the circle). This bifurcation illustrates the structural
+        sensitivity to permutations, central to the EJS recurrence forest theory.</span>
       </div>
     </div>
   </div>
@@ -533,15 +588,20 @@ Conditions initiales : a(0)=1, a(1)=0
   <!-- ═══════════════════════════════════════════════════════ CAS 7 -->
   <div class="case c-complex" id="cas7">
     <div class="case-header">
-      <div class="case-num">Cas 07 — Conditions initiales complexes</div>
-      <div class="case-title">Moteur et conditions initiales complexes <span class="badge">complexe</span></div>
-      <div class="case-ejs">EJS_PIP0_P1P-I</div>
+      <div class="case-num"><span class="fr">Cas 07 — Conditions initiales complexes</span><span class="en" hidden>Case 07 — Complex initial conditions</span></div>
+      <div class="case-title">
+        <span class="fr">Moteur et conditions initiales complexes</span>
+        <span class="en" hidden>Complex engine and complex initial conditions</span>
+        <span class="badge"><span class="fr">complexe</span><span class="en" hidden>complex</span></span>
+      </div>
+      <div class="case-ejs">EJS_PIP0_P1NI</div>
+      <a class="pdf-link" href="pdf/Linear_Recurrences_EJS_P1iP0_P1N1i.pdf" target="_blank">↓ PDF</a>
     </div>
     <div class="case-body">
       <div class="def-block">
 LinearRecurrence[{-I, 1}, {I, 0}, 30]
 a(n) = (1)·a(n-2) + (-I)·a(n-1)
-Conditions initiales : a(0)=I, a(1)=0
+<span class="fr">Conditions initiales</span><span class="en" hidden>Initial terms</span> : a(0)=I, a(1)=0
       </div>
       <div class="formula-block">
         $$a(n) = -\frac{3 \cdot 2^n}{3\sqrt{3}\left(\sqrt{3}+i\right)^n + 3i\left(\sqrt{3}+i\right)^n}
@@ -550,25 +610,80 @@ Conditions initiales : a(0)=I, a(1)=0
         - \frac{3\left(\frac{i}{\frac{-\sqrt{3}}{2}+\frac{i}{2}}\right)^n}{-3\sqrt{3}+3i}$$
       </div>
       <div class="seq-block">
-        <div class="seq-label">Séquence (30 premiers termes)</div>
+        <div class="seq-label"><span class="fr">Séquence (30 premiers termes)</span><span class="en" hidden>Sequence (first 30 terms)</span></div>
         <div class="seq-val">I, 0, I, 1, 0, 1, -I, 0, -I, -1, 0, -1, I, 0, I, 1, 0, 1, -I, 0, -I, -1, 0, -1, I, 0, I, 1, 0, 1</div>
       </div>
       <div class="insight">
-        <strong>Propriété remarquable :</strong> le moteur est complexe (coefficient $-i$)
-        et les conditions initiales sont complexes ($a(0)=i$). La séquence résultante
-        est elle-même complexe mais <em>périodique</em> et ne prend que les valeurs
+        <strong class="fr">Propriété remarquable :</strong><strong class="en" hidden>Remarkable property:</strong>
+        <span class="fr">le moteur est complexe (coefficient $-i$) et les conditions initiales sont
+        complexes ($a(0)=i$). La séquence résultante est périodique et ne prend que les valeurs
         $\{0, 1, -1, i, -i\}$ — les quatre unités de $\mathbb{Z}[i]$ plus zéro.
-        Les racines caractéristiques sont sur le cercle unité du plan complexe,
-        ce qui garantit la périodicité. La période 12 est la plus courte
-        contenant tous les états. Ce cas montre que la théorie EJS s'étend
-        naturellement aux entiers de Gauss.
+        Les racines caractéristiques sont sur le cercle unité, ce qui garantit la périodicité.
+        Ce cas montre que la théorie EJS s'étend naturellement aux entiers de Gauss.</span>
+        <span class="en" hidden>the engine is complex (coefficient $-i$) and the initial conditions are
+        complex ($a(0)=i$). The resulting sequence is periodic and takes only values
+        $\{0, 1, -1, i, -i\}$ — the four units of $\mathbb{Z}[i]$ plus zero.
+        Characteristic roots lie on the unit circle, guaranteeing periodicity.
+        This case shows that the EJS theory extends naturally to Gaussian integers.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ CAS 8 -->
+  <div class="case c-polynomial" id="cas8">
+    <div class="case-header">
+      <div class="case-num"><span class="fr">Cas 08 — Coefficients rationnels</span><span class="en" hidden>Case 08 — Rational coefficients</span></div>
+      <div class="case-title">
+        <span class="fr">Coefficients dans ℚ — séquence rationnelle, formule irrationnelle</span>
+        <span class="en" hidden>Coefficients in ℚ — rational sequence, irrational formula</span>
+        <span class="badge">ℚ → ℝ</span>
+      </div>
+      <div class="case-ejs">EJS_P0P1P2_N1/2P3/4P1</div>
+      <a class="pdf-link" href="pdf/Linear_Recurrences__EJS_P0P1P2_N0_5P0_75P1.pdf" target="_blank">↓ PDF</a>
+    </div>
+    <div class="case-body">
+      <div class="def-block">
+LinearRecurrence[{1, 3/4, -1/2}, {0, 1, 2}, 30]
+a(n) = (-1/2)·a(n-3) + (3/4)·a(n-2) + (1)·a(n-1)
+<span class="fr">Conditions initiales</span><span class="en" hidden>Initial terms</span> : a(0)=0, a(1)=1, a(2)=2
+      </div>
+      <div class="formula-block">
+        $$a(n) = - \frac{7 \cdot 4^{n}}{- \frac{85 \left(-1 + \sqrt{17}\right)^{n}}{4} + \frac{13 \sqrt{17} \left(-1 + \sqrt{17}\right)^{n}}{4}} - \frac{\sqrt{17} \cdot 4^{n}}{- \frac{85 \left(-1 + \sqrt{17}\right)^{n}}{4} + \frac{13 \sqrt{17} \left(-1 + \sqrt{17}\right)^{n}}{4}} + \frac{\sqrt{17} \left(\frac{1}{- \frac{\sqrt{17}}{4} - \frac{1}{4}}\right)^{n}}{- \frac{85}{4} - \frac{13 \sqrt{17}}{4}} - \frac{7 \left(\frac{1}{- \frac{\sqrt{17}}{4} - \frac{1}{4}}\right)^{n}}{- \frac{85}{4} - \frac{13 \sqrt{17}}{4}} - \frac{3 \cdot 2^{-n}}{2}$$
+      </div>
+      <div class="seq-block">
+        <div class="seq-label"><span class="fr">Séquence (30 premiers termes — valeurs dans ℚ)</span><span class="en" hidden>Sequence (first 30 terms — values in ℚ)</span></div>
+        <div class="seq-val">0, 1, 2, 11/4, 15/4, 77/16, 25/4, 511/64, 657/64, 3361/256, 2155/128, 22067/1024, 28275/1024, 144821/4096, 23189/512, 950311/16384, 1217205/16384, 6235657/65536, 3993325/32768, 40915931/262144, 52404567/262144, 268472861/1048576, 85963675/262144, 1761600847/4194304, 2256219225/4194304, 11558841841/16777216, 7402148911/8388608, 75843963011/67108864, 97139172795/67108864, 497654197637/268435456</div>
+      </div>
+      <div class="insight">
+        <strong class="fr">Propriété remarquable :</strong><strong class="en" hidden>Remarkable property:</strong>
+        <span class="fr">les coefficients du moteur sont des fractions rationnelles
+        $\{1,\ \tfrac{3}{4},\ -\tfrac{1}{2}\}$ — éléments de $\mathbb{Q}$.
+        La séquence résultante reste entièrement dans $\mathbb{Q}$ : chaque terme est une fraction exacte.
+        Pourtant la formule symbolique fait apparaître $\sqrt{17}$ — un irrationnel absent des données
+        d'entrée, né des racines du polynôme caractéristique $x^3 - x^2 - \tfrac{3}{4}x + \tfrac{1}{2} = 0$.
+        La théorie EJS gère automatiquement cette transition de corps :
+        $\mathbb{Q}$ (coefficients) $\to$ $\mathbb{Q}(\sqrt{17})$ (formule) $\to$ $\mathbb{Q}$ (séquence).
+        Le terme $-\tfrac{3}{2} \cdot 2^{-n}$ disparaît exponentiellement — trace de la racine
+        réelle négative de module inférieur à 1.</span>
+        <span class="en" hidden>the engine coefficients are rational fractions
+        $\{1,\ \tfrac{3}{4},\ -\tfrac{1}{2}\}$ — elements of $\mathbb{Q}$.
+        The resulting sequence stays entirely in $\mathbb{Q}$: every term is an exact fraction.
+        Yet the symbolic formula features $\sqrt{17}$ — an irrational absent from the input data,
+        born from the roots of $x^3 - x^2 - \tfrac{3}{4}x + \tfrac{1}{2} = 0$.
+        The EJS theory handles this field transition automatically:
+        $\mathbb{Q}$ (coefficients) $\to$ $\mathbb{Q}(\sqrt{17})$ (formula) $\to$ $\mathbb{Q}$ (sequence).
+        The term $-\tfrac{3}{2} \cdot 2^{-n}$ decays exponentially — trace of the negative real root
+        of modulus less than 1.</span>
       </div>
     </div>
   </div>
 
   <!-- Footer -->
   <footer>
-    <div class="footer-copy">© 2026 Eric Jacob Simon — CC BY-NC 4.0 — Tous droits réservés</div>
+    <div class="footer-copy">
+      <span class="fr">© 2026 Eric Jacob Simon — CC BY-NC 4.0 — Tous droits réservés</span>
+      <span class="en" hidden>© 2026 Eric Jacob Simon — CC BY-NC 4.0 — All rights reserved</span>
+    </div>
     <div class="footer-links">
       <a href="https://ejsnews.github.io/">Hub</a>
       <a href="https://ejsnews.github.io/universal-atlas/">Atlas</a>
@@ -578,5 +693,17 @@ Conditions initiales : a(0)=I, a(1)=0
   </footer>
 
 </div>
+
+<script>
+  var lang = 'fr';
+  function toggleLang() {
+    lang = (lang === 'fr') ? 'en' : 'fr';
+    var other = (lang === 'fr') ? 'en' : 'fr';
+    document.querySelectorAll('.' + lang).forEach(function(el){ el.hidden = false; });
+    document.querySelectorAll('.' + other).forEach(function(el){ el.hidden = true; });
+    document.getElementById('lang-btn').textContent = (lang === 'fr') ? 'EN' : 'FR';
+  }
+</script>
+
 </body>
 </html>
