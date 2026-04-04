@@ -3,6 +3,7 @@
 # Codex EJS – Théorie Unificatrice
 **Première version archivée officiellement**
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19418709.svg)](https://doi.org/10.5281/zenodo.19418709)
+
 **DOI principal du site :** [10.5281/zenodo.19418709](https://doi.org/10.5281/zenodo.19418709)
 
 Version 1.0 — 4 avril 2026
