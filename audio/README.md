@@ -1,4 +1,4 @@
-# 🎵 PrimaLux : Le Manège de l'Absolu (VF)
+## 🎵 PrimaLux : Le Manège de l'Absolu (VF)
 **Volet sonore et visuel de la Théorie Unificatrice EJS**
 
 Ce dossier contient les ressources multimédias liées à la vulgarisation de la transition entre la micro-échelle de Planck et le macro-cosme.
