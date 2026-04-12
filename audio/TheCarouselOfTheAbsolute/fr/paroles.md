@@ -54,5 +54,10 @@ L’univers nous murmure qu'il n’a ni début ni fin.
 
 ---
 
+### 🌌 Synopsis
+Cette œuvre décrit le passage du chaos primordial à l'organisation du vivant par l'entremise du Codex EJS. Elle illustre comment les structures mathématiques (nombres premiers, récurrences linéaires) servent de "terreau" à la lumière, puis à la matière pour engendrer la réalité physique.
+
+Note : Le "Codex-boson" se substitue au Boson de Higgs et symbolise ici une information médiatrice mathématique permettant de cristalliser les lois quantiques, puis les lois de la physique.
+
 ### ⚖️ Propriété Intellectuelle
 **© 2026 Eric Jacob Simon — Tous droits réservés.** *Licence CC BY-NC 4.0 : Usage non-commercial avec attribution obligatoire.* *Lien vers la théorie : [ejsnews.github.io](https://ejsnews.github.io)*
