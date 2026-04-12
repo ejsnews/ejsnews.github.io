@@ -35,7 +35,7 @@ Dès que l'on franchit un seuil fractal (vers l'infiniment petit ou l'infiniment
 ---
 
 ### ⚖️ Propriété Intellectuelle & Licence
-**© 2026 Eric Jacob Simon — Tous droits réservés.**
+**© 2026 Eric Jacob  EJS — Tous droits réservés.**
 
 Conformément à la licence **CC BY-NC 4.0** du dépôt principal :
 1. **Attribution :** Toute utilisation doit mentionner l'auteur : **Eric Jacob - EJS**.
