@@ -60,4 +60,4 @@ Cette œuvre décrit le passage du chaos primordial à l'organisation du vivant 
 Note : Le "Codex-boson" se substitue au Boson de Higgs et symbolise ici une information médiatrice mathématique permettant de cristalliser les lois quantiques, puis les lois de la physique.
 
 ### ⚖️ Propriété Intellectuelle
-**© 2026 Eric Jacob Simon — Tous droits réservés.** *Licence CC BY-NC 4.0 : Usage non-commercial avec attribution obligatoire.* *Lien vers la théorie : [ejsnews.github.io](https://ejsnews.github.io)*
+**© 2026 Eric Jacob - EJS — Tous droits réservés.** *Licence CC BY-NC 4.0 : Usage non-commercial avec attribution obligatoire.* *Lien vers la théorie : [ejsnews.github.io](https://ejsnews.github.io)*
