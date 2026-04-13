@@ -23,6 +23,23 @@ Nos lois de la physique actuelles sont **bornées** : elles fonctionnent avec un
 
 Dès que l'on franchit un seuil fractal (vers l'infiniment petit ou l'infiniment grand), une **décohérence** apparaît. Ce n'est pas une absence d'ordre, mais le passage à un autre niveau de la fractale où les propriétés alternent. La "rupture" observée par la science entre le monde quantique et le monde cosmologique est le signe que nous changeons de palier dans le **Manège de l'Absolu**.
 
+<section id="primalux-project" style="border: 1px solid #444; padding: 20px; border-radius: 10px; background-color: #f9f9f9; margin-bottom: 25px;">
+  <h2 style="margin-top: 0; color: #333;">🎵 PrimaLux : Le Manège de l'Absolu</h2>
+  <p style="color: #555;">Une exploration sonore et visuelle de la micro-échelle de Planck au macro-cosme.</p>
+  
+  <video controls poster="https://ejsnews.github.io/audio/TheCarouselOfTheAbsolute/fr/pics/PrimaLux_Le_manege_de_l_absolu.png" width="100%" style="border-radius: 6px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+    <source src="https://ejsnews.github.io/audio/TheCarouselOfTheAbsolute/fr/PrimaLux_Le_manege_de_l_Absolu_720px.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la lecture de vidéos HTML5.
+  </video>
+
+  <div class="lyrics" style="margin-top: 20px; font-style: italic; border-left: 4px solid #007bff; padding-left: 15px;">
+    <blockquote style="margin: 0; color: #444;">
+      "Au point de Planck, je tisse les trames...<br>
+      PrimaLux, le manège de l'Absolu."
+    </blockquote>
+  </div>
+</section>
+
 > *"Au point de Planck, le codex divin est le guide et le langage des premières lumières. Il définit la répétition des fractales qui, d'une soupe à l'autre, déploie la complexité du cosmos."*
 
 ---
