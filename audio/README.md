@@ -33,7 +33,6 @@ Nos lois physiques sont **bornées** : elles fonctionnent dans notre fenêtre de
 
 | Fichier | Description |
 |---|---|
-| [`TheCarouselOfTheAbsolute/fr/PrimaLux_Le_manege_de_l_absolu_V1.mp3`](./TheCarouselOfTheAbsolute/fr/PrimaLux_Le_manege_de_l_absolu_V1.mp3) | Piste audio originale |
 | [`TheCarouselOfTheAbsolute/fr/PrimaLux_Le_manege_de_l_Absolu_720px.mp4`](./TheCarouselOfTheAbsolute/fr/PrimaLux_Le_manege_de_l_Absolu_720px.mp4) | Vidéo 720p |
 | [`TheCarouselOfTheAbsolute/fr/pics/`](./TheCarouselOfTheAbsolute/fr/pics/) | Galerie d'illustrations |
 | [`TheCarouselOfTheAbsolute/fr/paroles.md`](./TheCarouselOfTheAbsolute/fr/paroles.md) | Paroles et notes théoriques |
