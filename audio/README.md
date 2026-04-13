@@ -1,73 +1,55 @@
-## 🎵 PrimaLux : Le Manège de l'Absolu (VF)
+# 🎵 PrimaLux : Le Manège de l'Absolu (VF)
+
 **Volet sonore et visuel de la Théorie Unificatrice EJS**
+
+> 🌐 **[Voir la page complète avec lecteur vidéo →](https://ejsnews.github.io/audio/)**
 
 Ce dossier contient les ressources multimédias liées à la vulgarisation de la transition entre la micro-échelle de Planck et le macro-cosme.
 
 ---
 
-### 📄 Synopsis Théorique : Le Manège des Échelles
+## 📄 Synopsis Théorique
 
-Cette œuvre "Cinematic Synth-wave" illustre le mécanisme de la **Trame de Planck**. Elle explore l'idée que la matière n'est pas une substance inerte, mais une **émergence géométrique** issue d'une soupe cosmique fluide et homogène (un océan infini). 
+Cette œuvre *Cinematic Synth-wave* illustre le mécanisme de la **Trame de Planck**. Elle explore l'idée que la matière n'est pas une substance inerte, mais une **émergence géométrique** issue d'une soupe cosmique fluide et homogène (un océan infini).
 
-L'Univers est ici conçu comme une **infinie fractale** où la réalité n'est pas une structure rigide et continue, mais une succession de niveaux de cohérence dictés par le **Codex EJS** (récurrences linéaires complexes, plantes et arbres de nombres premiers). Les états gaz, fluides, solides se retrouvent sur de nombreuses échelles par l'entremise des fractales.
+L'Univers est ici conçu comme une **fractale infinie** où la réalité est une succession de niveaux de cohérence dictés par le **Codex EJS** (récurrences linéaires complexes, arbres de nombres premiers).
 
-#### 🌊 Le Concept de la "Soupe" Multi-Échelle
-Le motif de la "soupe" est récursif et se retrouve à chaque saut d'octave fractale :
-* **Échelle de Planck ($10^{-36}$ m) :** La soupe primordiale où le Codex guide la soupe dans les premières structures géométriques. C'est également ici que le temps commence à se construire.
-* **Échelle Atomique ($10^{-15}$ m) :** Les structures se cristallisent en matière organisée.
-* **Échelle Galactique ($10^{21}$ m) :** Les galaxies elles-mêmes forment un fluide cosmique, une "soupe" à grande échelle.
-* **Échelle Extrême :** On peut envisager des "soupes de trous noirs" ou d'amas, pour lesquels de nouvelles lois et de nouveaux "Temps" émergent.
+### 🌊 Le Concept de la « Soupe » Multi-Échelle
 
-#### 📉 Lois Bornées et Décohérence Fractale
-Nos lois de la physique actuelles sont **bornées** : elles fonctionnent avec une certaine précision dans notre "fenêtre de cohérence" locale (environ de $10^{-12}$ à $10^{15}$ m). 
+Le motif de la « soupe » est récursif et se retrouve à chaque saut d'octave fractale :
 
-Dès que l'on franchit un seuil fractal (vers l'infiniment petit ou l'infiniment grand), une **décohérence** apparaît. Ce n'est pas une absence d'ordre, mais le passage à un autre niveau de la fractale où les propriétés alternent. La "rupture" observée par la science entre le monde quantique et le monde cosmologique est le signe que nous changeons de palier dans le **Manège de l'Absolu**.
+- **Échelle de Planck (10^-36 m) :** La soupe primordiale où le Codex guide les premières structures géométriques. Le temps commence à se construire ici.
+- **Échelle Atomique (10^-15 m) :** Les structures se cristallisent en matière organisée.
+- **Échelle Galactique (10^21 m) :** Les galaxies elles-mêmes forment un fluide cosmique.
+- **Échelle Extrême :** Soupes de trous noirs ou d'amas — de nouvelles lois et de nouveaux « Temps » émergent.
 
-<section id="primalux-project" style="border: 1px solid #444; padding: 20px; border-radius: 10px; background-color: #f9f9f9; margin-bottom: 25px;">
-  <h2 style="margin-top: 0; color: #333;">🎵 PrimaLux : Le Manège de l'Absolu</h2>
-  <p style="color: #555;">Une exploration sonore et visuelle de la micro-échelle de Planck au macro-cosme.</p>
-  
-<section id="primalux-project" style="border: 1px solid #444; padding: 20px; border-radius: 10px; background-color: #fcfcfc; margin-bottom: 25px;">
-  <h2 style="margin-top: 0; color: #333;">🎵 PrimaLux : Le Manège de l'Absolu</h2>
-  <p style="color: #555;">Une exploration sonore et visuelle de la micro-échelle de Planck au macro-cosme.</p>
-  
-  <video controls width="100%" poster="https://ejsnews.github.io/audio/TheCarouselOfTheAbsolute/fr/pics/PrimaLux_Le_manege_de_l_absolu.png" style="border-radius: 6px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-    <source src="https://ejsnews.github.io/audio/TheCarouselOfTheAbsolute/fr/PrimaLux_Le_manege_de_l_Absolu_720px.mp4" type="video/mp4">
-    <a href="https://ejsnews.github.io/audio/TheCarouselOfTheAbsolute/fr/PrimaLux_Le_manege_de_l_Absolu_720px.mp4" target="_blank">
-      <img src="https://ejsnews.github.io/audio/TheCarouselOfTheAbsolute/fr/pics/PrimaLux_Le_manege_de_l_absolu.png" alt="Regarder la vidéo PrimaLux" style="width:100%;">
-      <p style="text-align:center;">▶ Cliquez ici pour ouvrir la vidéo (si le lecteur ne s'affiche pas)</p>
-    </a>
-  </video>
+### 📉 Lois Bornées et Décohérence Fractale
 
-  <div style="margin-top: 20px; font-style: italic; border-left: 4px solid #007bff; padding-left: 15px;">
-    <blockquote style="margin: 0; color: #444;">
-      "Au-delà du regard, dans l’ombre où tout s’agite,<br>
-Une matrice éthérée où nulle loi n’habite.<br>
-Un chaos indétectable, sans liens et sans vêtement,<br>
-Réclame un codex pour son premier tourment.<br>
-Car le vide n'est qu'un rêve pour cet océan...<br>"
-    </blockquote>
-  </div>
-</section>
-
-> *"Au point de Planck, le codex divin est le guide et le langage des premières lumières. Il définit la répétition des fractales qui, d'une soupe à l'autre, déploie la complexité du cosmos."*
+Nos lois physiques sont **bornées** : elles fonctionnent dans notre fenêtre de cohérence locale (environ 10^-12 à 10^15 m). Dès qu'on franchit un seuil fractal, une **décohérence** apparaît — non une absence d'ordre, mais un changement de palier dans le **Manège de l'Absolu**.
 
 ---
 
-### 📁 Contenu du dossier
-* [`PrimaLux_Le_manege_de_l_absolu_V1.mp3`](./TheCarouselOfTheAbsolute/fr/PrimaLux_Le_manege_de_l_absolu_V1.mp3) : La piste audio originale.
-* [`/pics/`](./TheCarouselOfTheAbsolute/fr/pics/) : Galerie d'illustrations (forêt fractale, cubes quantiques).
-* [`paroles.md`](./TheCarouselOfTheAbsolute/fr/paroles.md) : Retranscription complète des paroles et notes théoriques.
+## 📁 Contenu du dossier
+
+| Fichier | Description |
+|---|---|
+| [`TheCarouselOfTheAbsolute/fr/PrimaLux_Le_manege_de_l_absolu_V1.mp3`](./TheCarouselOfTheAbsolute/fr/PrimaLux_Le_manege_de_l_absolu_V1.mp3) | Piste audio originale |
+| [`TheCarouselOfTheAbsolute/fr/PrimaLux_Le_manege_de_l_Absolu_720px.mp4`](./TheCarouselOfTheAbsolute/fr/PrimaLux_Le_manege_de_l_Absolu_720px.mp4) | Vidéo 720p |
+| [`TheCarouselOfTheAbsolute/fr/pics/`](./TheCarouselOfTheAbsolute/fr/pics/) | Galerie d'illustrations |
+| [`TheCarouselOfTheAbsolute/fr/paroles.md`](./TheCarouselOfTheAbsolute/fr/paroles.md) | Paroles et notes théoriques |
 
 ---
 
-### ⚖️ Propriété Intellectuelle & Licence
-**© 2026 Eric Jacob  EJS — Tous droits réservés.**
+## ⚖️ Propriété Intellectuelle & Licence
+
+**© 2026 Eric Jacob — EJS — Tous droits réservés.**
 
 Conformément à la licence **CC BY-NC 4.0** du dépôt principal :
+
 1. **Attribution :** Toute utilisation doit mentionner l'auteur : **Eric Jacob - EJS**.
 2. **Usage :** Usage scientifique, pédagogique et privé autorisé.
-3. **Interdiction :** Toute exploitation commerciale (monétisation YouTube, logiciels, publications) est strictement interdite sans accord préalable écrit.
+3. **Interdiction :** Toute exploitation commerciale (monétisation YouTube, logiciels, publications) strictement interdite sans accord préalable écrit.
 
 ---
-*Contact : ejsnews@gmail.com | [Retour à l'Atlas Géométrique](https://ejsnews.github.io/universal-atlas/)*
+
+*Contact : ejsnews@gmail.com | [Atlas Géométrique EJS](https://ejsnews.github.io/universal-atlas/)*
