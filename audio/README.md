@@ -27,7 +27,7 @@ Dès que l'on franchit un seuil fractal (vers l'infiniment petit ou l'infiniment
   <h2 style="margin-top: 0; color: #333;">🎵 PrimaLux : Le Manège de l'Absolu</h2>
   <p style="color: #555;">Une exploration sonore et visuelle de la micro-échelle de Planck au macro-cosme.</p>
   
-  <video controls poster="https://ejsnews.github.io/audio/TheCarouselOfTheAbsolute/fr/pics/PrimaLux_Le_manege_de_l_absolu.png" width="100%" style="border-radius: 6px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+  <video controls preload="none" poster="https://ejsnews.github.io/audio/TheCarouselOfTheAbsolute/fr/pics/PrimaLux_Le_manege_de_l_absolu.png" width="100%" style="border-radius: 6px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
     <source src="https://ejsnews.github.io/audio/TheCarouselOfTheAbsolute/fr/PrimaLux_Le_manege_de_l_Absolu_720px.mp4" type="video/mp4">
     Votre navigateur ne supporte pas la lecture de vidéos HTML5.
   </video>
