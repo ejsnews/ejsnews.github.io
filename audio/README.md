@@ -1,4 +1,9 @@
-# 🎵 PrimaLux : Le Manège de l'Absolu (VF)
+---
+layout: default
+title: PrimaLux Le Manège de l'Absolu
+---
+
+## 🎵 PrimaLux : Le Manège de l'Absolu (VF)
 
 **Volet sonore et visuel de la Théorie Unificatrice EJS**
 
@@ -52,3 +57,5 @@ Conformément à la licence **CC BY-NC 4.0** du dépôt principal :
 ---
 
 *Contact : ejsnews@gmail.com | [Atlas Géométrique EJS](https://ejsnews.github.io/universal-atlas/)*
+
+*Contact : ejsnews@gmail.com | [EJS](https://ejsnews.github.io/ejsnews/) | [Atlas & Codex nombres premiers EJS](https://ejsnews.github.io/primes-trees/) | [Atlas Géométrique EJS](https://ejsnews.github.io/universal-atlas/)*
