@@ -1,4 +1,9 @@
-# 🎵 PrimaLux : Le Manège de l'Absolu (Paroles Intégrales)
+---
+layout: default
+title: Paroles — PrimaLux Le Manège de l'Absolu
+---
+
+## 🎵 PrimaLux : Le Manège de l'Absolu (Paroles Intégrales)
 **Volet poétique de la Théorie Unificatrice EJS** **Auteur : Eric Jacob Simon (2026)**
 
 ---
