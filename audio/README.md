@@ -27,15 +27,25 @@ Dès que l'on franchit un seuil fractal (vers l'infiniment petit ou l'infiniment
   <h2 style="margin-top: 0; color: #333;">🎵 PrimaLux : Le Manège de l'Absolu</h2>
   <p style="color: #555;">Une exploration sonore et visuelle de la micro-échelle de Planck au macro-cosme.</p>
   
-  <video controls preload="none" poster="https://ejsnews.github.io/audio/TheCarouselOfTheAbsolute/fr/pics/PrimaLux_Le_manege_de_l_absolu.png" width="100%" style="border-radius: 6px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+<section id="primalux-project" style="border: 1px solid #444; padding: 20px; border-radius: 10px; background-color: #fcfcfc; margin-bottom: 25px;">
+  <h2 style="margin-top: 0; color: #333;">🎵 PrimaLux : Le Manège de l'Absolu</h2>
+  <p style="color: #555;">Une exploration sonore et visuelle de la micro-échelle de Planck au macro-cosme.</p>
+  
+  <video controls width="100%" poster="https://ejsnews.github.io/audio/TheCarouselOfTheAbsolute/fr/pics/PrimaLux_Le_manege_de_l_absolu.png" style="border-radius: 6px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
     <source src="https://ejsnews.github.io/audio/TheCarouselOfTheAbsolute/fr/PrimaLux_Le_manege_de_l_Absolu_720px.mp4" type="video/mp4">
-    Votre navigateur ne supporte pas la lecture de vidéos HTML5.
+    <a href="https://ejsnews.github.io/audio/TheCarouselOfTheAbsolute/fr/PrimaLux_Le_manege_de_l_Absolu_720px.mp4" target="_blank">
+      <img src="https://ejsnews.github.io/audio/TheCarouselOfTheAbsolute/fr/pics/PrimaLux_Le_manege_de_l_absolu.png" alt="Regarder la vidéo PrimaLux" style="width:100%;">
+      <p style="text-align:center;">▶ Cliquez ici pour ouvrir la vidéo (si le lecteur ne s'affiche pas)</p>
+    </a>
   </video>
 
-  <div class="lyrics" style="margin-top: 20px; font-style: italic; border-left: 4px solid #007bff; padding-left: 15px;">
+  <div style="margin-top: 20px; font-style: italic; border-left: 4px solid #007bff; padding-left: 15px;">
     <blockquote style="margin: 0; color: #444;">
-      "Au point de Planck, je tisse les trames...<br>
-      PrimaLux, le manège de l'Absolu."
+      "Au-delà du regard, dans l’ombre où tout s’agite,<br>
+Une matrice éthérée où nulle loi n’habite.<br>
+Un chaos indétectable, sans liens et sans vêtement,<br>
+Réclame un codex pour son premier tourment.<br>
+Car le vide n'est qu'un rêve pour cet océan...<br>"
     </blockquote>
   </div>
 </section>
