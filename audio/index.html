@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrimaLux : Le Manège de l'Absolu — Eric Jacob EJS</title>
+
+  <!-- MathJax pour les formules LaTeX -->
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+
+  <style>
+    :root {
+      --bg: #0d0d1a;
+      --surface: #13132a;
+      --border: #2a2a4a;
+      --accent: #5b8dee;
+      --accent2: #a78bfa;
+      --text: #e0e0f0;
+      --text-muted: #888aaa;
+      --quote-bar: #5b8dee;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.75;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* ── En-tête ── */
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header .back-link {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 1rem;
+      letter-spacing: 0.03em;
+    }
+    header .back-link:hover { text-decoration: underline; }
+
+    header h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.4rem;
+    }
+
+    header .subtitle {
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    /* ── Sections ── */
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      color: var(--accent2);
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      color: var(--accent);
+      margin: 1.4rem 0 0.6rem;
+    }
+
+    p { margin-bottom: 0.9rem; }
+    strong { color: #c8d6ff; }
+
+    /* ── Lecteur vidéo ── */
+    .video-wrapper {
+      margin: 1.2rem 0;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+      display: block;
+      background: #000;
+    }
+
+    .video-fallback {
+      display: block;
+      text-align: center;
+      margin-top: 0.8rem;
+      color: var(--accent);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .video-fallback:hover { text-decoration: underline; }
+
+    /* ── Liste des échelles ── */
+    ul.scales {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 1rem;
+    }
+
+    ul.scales li {
+      padding: 0.55rem 0.8rem;
+      border-left: 3px solid var(--accent);
+      margin-bottom: 0.6rem;
+      background: rgba(91,141,238,0.06);
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* ── Citations ── */
+    blockquote {
+      border-left: 4px solid var(--quote-bar);
+      padding: 0.8rem 1.2rem;
+      margin: 1.2rem 0;
+      background: rgba(91,141,238,0.07);
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      color: #b0b8d8;
+    }
+
+    blockquote p { margin: 0; line-height: 1.9; }
+
+    /* ── Contenu du dossier ── */
+    ul.files {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul.files li {
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    ul.files li:last-child { border-bottom: none; }
+
+    ul.files a {
+      color: var(--accent);
+      text-decoration: none;
+      font-family: monospace;
+      font-size: 0.92rem;
+    }
+    ul.files a:hover { text-decoration: underline; }
+
+    ul.files span {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-left: 0.5rem;
+    }
+
+    /* ── Licence ── */
+    ol.licence {
+      padding-left: 1.4rem;
+      margin-top: 0.5rem;
+    }
+    ol.licence li { margin-bottom: 0.4rem; }
+
+    /* ── Pied de page ── */
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <!-- En-tête -->
+  <header>
+    <a class="back-link" href="https://ejsnews.github.io/universal-atlas/">← Retour à l'Atlas Géométrique</a>
+    <h1>🎵 PrimaLux : Le Manège de l'Absolu</h1>
+    <p class="subtitle">Volet sonore et visuel de la Théorie Unificatrice EJS &mdash; Version Française</p>
+  </header>
+
+  <!-- Introduction -->
+  <section>
+    <h2>📄 Synopsis Théorique : Le Manège des Échelles</h2>
+
+    <p>
+      Ce dossier contient les ressources multimédias liées à la vulgarisation de la transition entre
+      la micro-échelle de Planck et le macro-cosme.
+    </p>
+
+    <p>
+      Cette œuvre <em>Cinematic Synth-wave</em> illustre le mécanisme de la <strong>Trame de Planck</strong>.
+      Elle explore l'idée que la matière n'est pas une substance inerte, mais une <strong>émergence géométrique</strong>
+      issue d'une soupe cosmique fluide et homogène — un océan infini.
+    </p>
+
+    <p>
+      L'Univers est ici conçu comme une <strong>fractale infinie</strong> où la réalité n'est pas une structure
+      rigide et continue, mais une succession de niveaux de cohérence dictés par le <strong>Codex EJS</strong>
+      (récurrences linéaires complexes, plantes et arbres de nombres premiers). Les états gaz, fluides, solides
+      se retrouvent sur de nombreuses échelles par l'entremise des fractales.
+    </p>
+
+    <h3>🌊 Le Concept de la « Soupe » Multi-Échelle</h3>
+
+    <p>Le motif de la « soupe » est récursif et se retrouve à chaque saut d'octave fractale :</p>
+
+    <ul class="scales">
+      <li>
+        <strong>Échelle de Planck ($10^{-36}$ m) :</strong> La soupe primordiale où le Codex guide
+        les premières structures géométriques. C'est également ici que le temps commence à se construire.
+      </li>
+      <li>
+        <strong>Échelle Atomique ($10^{-15}$ m) :</strong>
+        Les structures se cristallisent en matière organisée.
+      </li>
+      <li>
+        <strong>Échelle Galactique ($10^{21}$ m) :</strong>
+        Les galaxies elles-mêmes forment un fluide cosmique, une « soupe » à grande échelle.
+      </li>
+      <li>
+        <strong>Échelle Extrême :</strong> On peut envisager des « soupes de trous noirs » ou d'amas,
+        pour lesquels de nouvelles lois et de nouveaux « Temps » émergent.
+      </li>
+    </ul>
+
+    <h3>📉 Lois Bornées et Décohérence Fractale</h3>
+
+    <p>
+      Nos lois de la physique actuelles sont <strong>bornées</strong> : elles fonctionnent avec une
+      certaine précision dans notre « fenêtre de cohérence » locale (environ de $10^{-12}$ à $10^{15}$ m).
+    </p>
+
+    <p>
+      Dès que l'on franchit un seuil fractal (vers l'infiniment petit ou l'infiniment grand),
+      une <strong>décohérence</strong> apparaît. Ce n'est pas une absence d'ordre, mais le passage
+      à un autre niveau de la fractale où les propriétés alternent. La « rupture » observée par la science
+      entre le monde quantique et le monde cosmologique est le signe que nous changeons de palier
+      dans le <strong>Manège de l'Absolu</strong>.
+    </p>
+  </section>
+
+  <!-- Lecteur vidéo -->
+  <section>
+    <h2>🎵 PrimaLux : Le Manège de l'Absolu</h2>
+    <p>Une exploration sonore et visuelle de la micro-échelle de Planck au macro-cosme.</p>
+
+    <div class="video-wrapper">
+      <video
+        controls
+        preload="metadata"
+        poster="https://ejsnews.github.io/audio/TheCarouselOfTheAbsolute/fr/pics/PrimaLux_Le_manege_de_l_absolu.png">
+        <source
+          src="https://ejsnews.github.io/audio/TheCarouselOfTheAbsolute/fr/PrimaLux_Le_manege_de_l_Absolu_720px.mp4"
+          type="video/mp4">
+        Votre navigateur ne supporte pas la balise vidéo HTML5.
+      </video>
+      <a class="video-fallback"
+         href="https://ejsnews.github.io/audio/TheCarouselOfTheAbsolute/fr/PrimaLux_Le_manege_de_l_Absolu_720px.mp4"
+         target="_blank">
+        ▶ Ouvrir la vidéo directement si le lecteur ne s'affiche pas
+      </a>
+    </div>
+
+    <blockquote>
+      <p>
+        « Au-delà du regard, dans l'ombre où tout s'agite,<br>
+        Une matrice éthérée où nulle loi n'habite.<br>
+        Un chaos indétectable, sans liens et sans vêtement,<br>
+        Réclame un codex pour son premier tourment.<br>
+        Car le vide n'est qu'un rêve pour cet océan... »
+      </p>
+    </blockquote>
+
+    <blockquote>
+      <p>
+        « Au point de Planck, le codex divin est le guide et le langage des premières lumières.
+        Il définit la répétition des fractales qui, d'une soupe à l'autre, déploie la complexité du cosmos. »
+      </p>
+    </blockquote>
+  </section>
+
+  <!-- Contenu du dossier -->
+  <section>
+    <h2>📁 Contenu du dossier</h2>
+    <ul class="files">
+      <li>
+        <a href="./TheCarouselOfTheAbsolute/fr/PrimaLux_Le_manege_de_l_absolu_V1.mp3">
+          PrimaLux_Le_manege_de_l_absolu_V1.mp3
+        </a>
+        <span>— La piste audio originale.</span>
+      </li>
+      <li>
+        <a href="./TheCarouselOfTheAbsolute/fr/pics/">
+          /pics/
+        </a>
+        <span>— Galerie d'illustrations (forêt fractale, cubes quantiques).</span>
+      </li>
+      <li>
+        <a href="./TheCarouselOfTheAbsolute/fr/paroles.html">
+          paroles.md
+        </a>
+        <span>— Retranscription complète des paroles et notes théoriques.</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Licence -->
+  <section>
+    <h2>⚖️ Propriété Intellectuelle &amp; Licence</h2>
+
+    <p><strong>© 2026 Eric Jacob — EJS — Tous droits réservés.</strong></p>
+
+    <p>Conformément à la licence <strong>CC BY-NC 4.0</strong> du dépôt principal :</p>
+
+    <ol class="licence">
+      <li>
+        <strong>Attribution :</strong> Toute utilisation doit mentionner l'auteur :
+        <strong>Eric Jacob - EJS</strong>.
+      </li>
+      <li>
+        <strong>Usage :</strong> Usage scientifique, pédagogique et privé autorisé.
+      </li>
+      <li>
+        <strong>Interdiction :</strong> Toute exploitation commerciale (monétisation YouTube,
+        logiciels, publications) est strictement interdite sans accord préalable écrit.
+      </li>
+    </ol>
+  </section>
+
+  <!-- Pied de page -->
+  <footer>
+    <p>
+      Contact : <a href="mailto:ejsnews@gmail.com">ejsnews@gmail.com</a>
+      &nbsp;|&nbsp;
+      <a href="https://ejsnews.github.io/universal-atlas/">Retour à l'Atlas Géométrique</a>
+      &nbsp;|&nbsp;
+      <a href="https://github.com/ejsnews/ejsnews.github.io/tree/main/audio">Voir sur GitHub</a>
+    </p>
+    <p style="margin-top:0.5rem;">© 2026 Eric Jacob EJS — Licence CC BY-NC 4.0</p>
+  </footer>
+
+</div>
+</body>
+</html>
