@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galerie — PrimaLux : Le Manège de l'Absolu</title>
+  <style>
+    :root {
+      --bg: #0d0d1a;
+      --surface: #13132a;
+      --border: #2a2a4a;
+      --accent: #5b8dee;
+      --accent2: #a78bfa;
+      --text: #e0e0f0;
+      --text-muted: #888aaa;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    nav a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    nav a:hover { text-decoration: underline; }
+    nav span { color: var(--text-muted); margin: 0 0.4rem; }
+
+    header h1 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.4rem;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 82vh;
+      border-radius: 6px;
+      box-shadow: 0 0 40px rgba(91,141,238,0.3);
+    }
+    #lightbox-caption {
+      color: #ccc;
+      font-size: 0.9rem;
+      font-style: italic;
+      text-align: center;
+    }
+    #lightbox-close {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.5rem;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.7;
+    }
+    #lightbox-close:hover { opacity: 1; }
+
+    /* Grille */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-title {
+      padding: 0.5rem 0.7rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <nav>
+      <a href="https://ejsnews.github.io/">Accueil</a>
+      <span>›</span>
+      <a href="https://ejsnews.github.io/audio/">PrimaLux</a>
+      <span>›</span>
+      Galerie
+    </nav>
+    <h1>🎨 Galerie — Le Manège de l'Absolu</h1>
+    <p>Illustrations générées pour l'œuvre Cinematic Synth-wave · Eric Jacob EJS · 2026</p>
+  </header>
+
+  <div class="gallery" id="gallery"></div>
+
+  <footer>
+    <p>© 2026 Eric Jacob EJS — <a href="https://ejsnews.github.io/audio/">Retour à PrimaLux</a> — CC BY-NC 4.0</p>
+  </footer>
+
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <div id="lightbox-close" onclick="closeLightbox()">✕</div>
+  <img id="lightbox-img" src="" alt="">
+  <div id="lightbox-caption"></div>
+</div>
+
+<script>
+  const base = "https://ejsnews.github.io/audio/TheCarouselOfTheAbsolute/fr/pics/";
+
+  const images = [
+    "Au_dela_du_regard.png",
+    "Au_point_de_Planck.png",
+    "Avant_le_premier_tourment.png",
+    "Ballets_des_courants.png",
+    "Dentelle_d_aurore.png",
+    "Dentelle_de_clarte.png",
+    "Dentelle_de_lumiere.png",
+    "Geometrie_des_ames.png",
+    "Geometries_du_solide (2).png",
+    "Geometries_du_solide.png",
+    "Habit_de_boson_de_lumiere.png",
+    "Habits_de_lumiere.png",
+    "L'ocean_des_particules.png",
+    "L_Architecture_du_Monde_Liquide.png",
+    "L_aurore_de_verre.png",
+    "L_equation sacree.png",
+    "L_essence_infinie.png",
+    "La_loi_des_nombres.png",
+    "La_mesure_de_l_invisible.png",
+    "La_ou_le_temps_hesite (2).png",
+    "La_ou_le_temps_hesite (3).png",
+    "La_ou_le_temps_hesite.png",
+    "La_trame_de_Planck.png",
+    "La_tumulte_des_marees.png",
+    "La_valse_des_atomes.png",
+    "La_valse_des_miroirs.png",
+    "La_valse_des_miroirs_2.png",
+    "Le_bal_des_lois_obscures.png",
+    "Le_bal_sans_fin.png",
+    "Le_battement_primordial.png",
+    "Le_premier_tourment.png",
+    "Premiers_tourments.png",
+    "PrimaLux_Le_manege_de_l_absolu.png",
+    "Prismes_souverains.png",
+    "Souverain_mouvement.png",
+    "la_valse_des_particules.png",
+    "sacre_boson_de_nombres.png"
+  ];
+
+  function toTitle(filename) {
+    return filename
+      .replace(/\.png$/i, "")
+      .replace(/ \(\d+\)/, "")
+      .replace(/_/g, " ")
+      .replace(/'/g, "'");
+  }
+
+  const gallery = document.getElementById("gallery");
+
+  images.forEach(name => {
+    const url = base + encodeURIComponent(name);
+    const title = toTitle(name);
+
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <img src="${url}" alt="${title}" loading="lazy">
+      <div class="card-title">${title}</div>
+    `;
+    card.addEventListener("click", () => openLightbox(url, title));
+    gallery.appendChild(card);
+  });
+
+  function openLightbox(src, caption) {
+    document.getElementById("lightbox-img").src = src;
+    document.getElementById("lightbox-caption").textContent = caption;
+    document.getElementById("lightbox").classList.add("open");
+  }
+
+  function closeLightbox() {
+    document.getElementById("lightbox").classList.remove("open");
+    document.getElementById("lightbox-img").src = "";
+  }
+
+  document.getElementById("lightbox").addEventListener("click", function(e) {
+    if (e.target === this) closeLightbox();
+  });
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") closeLightbox();
+  });
+</script>
+</body>
+</html>
