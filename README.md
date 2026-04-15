@@ -15,6 +15,11 @@ Version 1.0 — 4 avril 2026
 
 ## Recherches publiées / Published Research
 
+
+**Site principal / Main website :** [https://ejsnews.github.io](https://ejsnews.github.io)
+
+---
+
 ### 📐 Universal Atlas of Geometric Constants — GCEJS
 
 300 000 constantes géométriques issues des récurrences linéaires généralisées, indexées à 50 chiffres de précision avec leurs expressions symboliques exactes en LaTeX.
