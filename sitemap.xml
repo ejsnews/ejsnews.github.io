@@ -358,4 +358,118 @@
     <priority>0.7</priority>
   </url>
 
+
+<!-- Analyses Haffner Energy - FR -->
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/analyses/LE_SAF_HAFFNER_ENERGY_UNE_SOLUTION_FRANCAISE_IMMEDIATE_POUR_LA_DECARBONATION_DE_L_AVIATION.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/analyses/HOPITAL_AUTONOME_DECARBONATION_ET_ENERGIE_VERTE_SOLUTION_THERMOLYSE_HAFFNER_ENERGY.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/analyses/THERMOLYSE_DECENTRALISEE_INDEPENDANCE_ENERGETIQUE_COLLECTIVITES_ELUS_RURAUX_AMRF.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Analyses Haffner Energy - EN -->
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/analyses/SAF_HAFFNER_ENERGY_A_FRENCH_IMMEDIATE_SOLUTION_FOR_AVIATION_DECARBONIZATION.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/analyses/AUTONOMOUS_HOSPITAL_DECARBONIZATION_GREEN_ENERGY_HAFFNER_ENERGY_THERMOLYSIS.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/analyses/HYDROGEN_INDEPENDENCE_WITHIN_REACH_OF_EVERY_TERRITORY_LOCAL_AUTHORITIES_RURAL_ELECTED_AUTHORITIES.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+
+
+
+  <!-- Manifeste principal -->
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Analyses Haffner Energy - FR -->
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/analyses/LE_SAF_HAFFNER_ENERGY_UNE_SOLUTION_FRANCAISE_IMMEDIATE_POUR_LA_DECARBONATION_DE_L_AVIATION.html</loc>
+    <lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/analyses/HOPITAL_AUTONOME_DECARBONATION_ET_ENERGIE_VERTE_SOLUTION_THERMOLYSE_HAFFNER_ENERGY.html</loc>
+    <lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/analyses/L_INDEPENDANCE_EN_HYDROGENE_A_PORTEE_DE_CHAQUE_TERRITOIRE_COLLECTIVITES_ELUS_RURAUX.html</loc>
+    <lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/analyses/REVOLUTION_ENERGETIQUE_ET_ABANDON_DE_SOUVERAINETE_NATIONALE.html</loc>
+    <lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/analyses/AUTONOMIE_ENERGETIQUE_TACTIQUE_DEFENSE_SOUVERAINETE_MILITAIRE.html</loc>
+    <lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/analyses/SAF_HAFFNER_ENERGY_A_FRENCH_IMMEDIATE_SOLUTION_FOR_AVIATION_DECARBONIZATION.html</loc>
+    <lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/analyses/AUTOMATED_HOSPITAL_DECARBONIZATION_AND_GREEN_ENERGY_THERMOLYSIS_SOLUTION_HAFFNER_ENERGY.html</loc>
+    <lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/analyses/HYDROGEN_INDEPENDENCE_WITHIN_REACH_OF_EVERY_TERRITORY_LOCAL_AUTHORITIES_RURAL_ELECTED_AUTHORITIES.html</loc>
+    <lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/analyses/ENERGY_REVOLUTION_AND_ABANDONMENT_OF_NATIONAL_SOVEREIGNTY.html</loc>
+    <lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/EXECUTIVE_SUMMARY.html</loc>
+    <lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/Kit_de_Plaidoyer_Souveraineté_Technologique.pdf</loc>
+    <lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/</loc>
+    <lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/kit-plaidoyer.html</loc>
+    <lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/kit-plaidoyer_v2.html</loc>
+    <lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ejsnews.github.io/manifeste-souverainete-technologique/manifeste_souverainete_technologique_v3.pdf</loc>
+    <lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+  </url>
 </urlset>
